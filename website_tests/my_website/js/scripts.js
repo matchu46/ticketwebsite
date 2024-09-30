@@ -1,3 +1,4 @@
+
 document.getElementById('searchButton').addEventListener('click', function() {
     const query = document.getElementById('eventSearch').value;
     
