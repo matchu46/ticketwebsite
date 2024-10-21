@@ -10,7 +10,7 @@ import time
 CHROME_BINARY_PATH = r"C:\Users\Owner\Downloads\chrome-win64\chrome-win64\chrome.exe"
 
 # URL of the event you want to scrape
-url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-10-26-2024/event/154770087/"
+url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-11-20-2024/event/154770080/?qid=24e3298a63bcfbd58f65bcd783136755&index=stubhub&ut=0f02c2f5fa9a11994a37229ffb5950bb36ccaab3&quantity=2"
 
 def scrape_tickets():
     # Set up Chrome options for Chrome for Testing
