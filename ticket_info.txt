@@ -1,2 +1,10 @@
 Section: 216, Row: 11, Price: $61
 Section: 216, Row: 9, Price: $61
+Section: 224, Row: 11, Price: $53
+Section: 224, Row: 8, Price: $52
+Section: 224, Row: 7, Price: $54
+Section: 224, Row: 10, Price: $52
+Section: 224, Row: 13, Price: $53
+Section: 224, Row: 13, Price: $53
+Section: 102, Row: 10, Price: $64
+Section: 217, Row: 9, Price: $74

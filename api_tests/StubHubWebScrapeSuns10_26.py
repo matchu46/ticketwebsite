@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
+from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException
 
 # Path to Chrome for Testing (update with the actual path)
 CHROME_BINARY_PATH = r"C:\Users\Owner\Downloads\chrome-win64\chrome-win64\chrome.exe"
@@ -40,57 +41,70 @@ def scrape_tickets():
         while True:
             # Check if the browser is still open
             if driver.window_handles:
-                # Wait for new elements to load
-                time.sleep(2)
+                try:
+                    # Wait for new elements to load
+                    time.sleep(2)
 
-                # Re-fetch elements to avoid stale references
-                ticket_rows = driver.find_elements(By.CLASS_NAME, "sc-hlalgf-31")
-                prices = driver.find_elements(By.CLASS_NAME, "sc-hlalgf-1")
-                sections = driver.find_elements(By.CLASS_NAME, "sc-hlalgf-0")
+                    # Re-fetch elements to avoid stale references
+                    ticket_rows = driver.find_elements(By.CLASS_NAME, "sc-hlalgf-31")
+                    prices = driver.find_elements(By.CLASS_NAME, "sc-hlalgf-1")
+                    sections = driver.find_elements(By.CLASS_NAME, "sc-hlalgf-0")
 
-                # Print the lengths of the lists for debugging
-                print(f"Found {len(ticket_rows)} ticket rows, {len(prices)} prices, {len(sections)} sections.")
+                    # Print the lengths of the lists for debugging
+                    print(f"Found {len(ticket_rows)} ticket rows, {len(prices)} prices, {len(sections)} sections.")
 
-                # Extract and print valid ticket data
-                for i in range(min(len(prices), len(ticket_rows), len(sections))):
-                    price_text = prices[i].text.strip()
-                    section_text = sections[i].text.strip()
-                    row_text = ticket_rows[i].text.strip()
+                    # Extract and print valid ticket data
+                    for i in range(min(len(prices), len(ticket_rows), len(sections))):
+                        try:
+                            price_text = prices[i].text.strip()
+                            section_text = sections[i].text.strip()
+                            row_text = ticket_rows[i].text.strip()
 
-                    # Debug print for each ticket
-                    print(f"Raw data - Section: {section_text}, Row: {row_text}, Price: {price_text}")
+                            # Debug print for each ticket
+                            print(f"Raw data - Section: {section_text}, Row: {row_text}, Price: {price_text}")
 
-                    # Clean the data
-                    # Get section number, accounting for potential text variations
-                    if "Section" in section_text:
-                        cleaned_section = section_text.split("Section")[-1].strip()  # Extract number after 'Section'
-                    else:
-                        cleaned_section = section_text.strip()  # Use the raw section if not prefixed
+                            # Clean the data
+                            # Get section number, accounting for potential text variations
+                            if "Section" in section_text:
+                                cleaned_section = section_text.split("Section")[-1].strip()  # Extract number after 'Section'
+                            else:
+                                cleaned_section = section_text.strip()  # Use the raw section if not prefixed
 
-                    # Get row number, accounting for potential text variations
-                    if "Row" in row_text:
-                        cleaned_row = row_text.split("Row")[-1].strip()  # Extract number after 'Row'
-                    else:
-                        cleaned_row = row_text.strip()  # Use the raw row if not prefixed
+                            # Get row number, accounting for potential text variations
+                            if "Row" in row_text:
+                                cleaned_row = row_text.split("Row")[-1].strip()  # Extract number after 'Row'
+                            else:
+                                cleaned_row = row_text.strip()  # Use the raw row if not prefixed
 
-                    # Validate section and row
-                    if cleaned_section.isdigit() and int(cleaned_section) in valid_sections and cleaned_row.isdigit() and 1 <= int(cleaned_row) <= 28:
-                        cleaned_price = f"${price_text.replace('$', '').strip()}"  # Clean price
+                            # Validate section and row
+                            if cleaned_section.isdigit() and int(cleaned_section) in valid_sections and cleaned_row.isdigit() and 1 <= int(cleaned_row) <= 28:
+                                cleaned_price = f"${price_text.replace('$', '').strip()}"  # Clean price
 
-                        ticket_info = (cleaned_section, cleaned_row, cleaned_price)
+                                ticket_info = (cleaned_section, cleaned_row, cleaned_price)
 
-                        # Avoid duplicates
-                        if ticket_info not in collected_tickets:
-                            collected_tickets.add(ticket_info)
-                            print(f"Valid Ticket - Section: {cleaned_section}, Row: {cleaned_row}, Price: {cleaned_price}")
+                                # Avoid duplicates
+                                if ticket_info not in collected_tickets:
+                                    collected_tickets.add(ticket_info)
+                                    print(f"Valid Ticket - Section: {cleaned_section}, Row: {cleaned_row}, Price: {cleaned_price}")
 
-                            # Write valid data to file
-                            with open("ticket_info.txt", "a") as file:
-                                file.write(f"Section: {cleaned_section}, Row: {cleaned_row}, Price: {cleaned_price}\n")
-                    else:
-                        print("Ticket did not match valid criteria.")
+                                    # Write valid data to file
+                                    with open("ticket_info.txt", "a") as file:
+                                        file.write(f"Section: {cleaned_section}, Row: {cleaned_row}, Price: {cleaned_price}\n")
+                            else:
+                                print("Ticket did not match valid criteria.")
 
-                print("No new tickets found.")
+                        except StaleElementReferenceException:
+                            print("Encountered stale element, retrying...")
+
+                except StaleElementReferenceException:
+                    print("Encountered stale element, retrying...")
+
+                except NoSuchElementException as e:
+                    print(f"No such element error: {e}")
+            else:
+                break
+
+            print("No new tickets found.")
 
     except Exception as e:
         print(f"An error occurred: {e}")
