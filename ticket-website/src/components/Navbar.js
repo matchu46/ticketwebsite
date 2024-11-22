@@ -1,17 +1,35 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
+import './Navbar.css';
+import { Button } from './Button';
 
 function Navbar() {
   const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
   
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const showButton = () => {
+    if(window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener('resize', showButton);
+
   return (
     <>
       <nav className="navbar">
         <div class="navbar-container">
-          <Link to="/" className="navbar-logo">
-            AZTickets <i className='fas fa-ticket-alt' />
+          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+            AZTIX <i className='fas fa-ticket-alt' />
           </Link>
           <div class='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -37,7 +55,8 @@ function Navbar() {
                Sign Up
               </Link>
             </li>  
-          </ul>  
+          </ul>
+          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}  
         </div>
       </nav>
     </>
