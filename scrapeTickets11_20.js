@@ -1,59 +1,23 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-12-25-2024/event/154770086/?quantity=2";
-const outputFile = "ticket_info_12_25.txt";
+const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-11-20-2024/event/154770080/?qid=24e3298a63bcfbd58f65bcd783136755&index=stubhub&ut=0f02c2f5fa9a11994a37229ffb5950bb36ccaab3&quantity=2";
+const outputFile = "ticket_info_11_20.txt";
 
 (async () => {
     const browser = await puppeteer.launch({
         executablePath: 'C:\\Users\\Owner\\Downloads\\chrome-win64\\chrome-win64\\chrome.exe',
-        headless: false, // Set to false to see the browser window
-        args: ['--start-maximized'], // Start the browser maximized
+        headless: false // Set to true if you don't want to see the browser window
     });
 
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 }); // Set a specific viewport size
-
-    // Go to the page and reload to ensure it's fully loaded
     await page.goto(url, { waitUntil: 'networkidle2' });
-    //await page.reload({ waitUntil: 'networkidle2' });
 
-    // Hide any overlay or loading spinner (if present)
-    await page.evaluate(() => {
-        const overlay = document.querySelector('.loading-overlay, .spinner-class'); // Replace with the correct class
-        if (overlay) {
-            overlay.style.display = 'none'; // Hide the overlay
-        }
-    });
-
-    // Optionally, take a screenshot to check the greyed-out state
-    await page.screenshot({ path: 'debug_screenshot.png' }); // Debug screenshot
-
-    // Inject the scrolling script into the page
-    await page.evaluate(() => {
-        const scrollHeight = 200;  // Amount to scroll by each time (in pixels)
-        const scrollSpeed = 200; // Scroll every 200ms
-
-        const scrollableElement = document.querySelector('.sc-57jg3s-0.ifTptv'); // Update the selector if necessary
-
-        if (scrollableElement) {
-            // Function to keep scrolling down the scrollable container
-            const scrollDown = () => {
-                scrollableElement.scrollBy(0, scrollHeight);  // Scroll by 200px down
-            };
-
-            // Set interval to keep scrolling
-            setInterval(scrollDown, scrollSpeed);  // Scroll every 200ms
-        } else {
-            console.error('Scrollable container not found.');
-        }
-    });
-
-    const collectedTickets = new Set();
+    const collectedTickets = new Set(); // To store unique ticket data
 
     // Function to collect ticket data
     const collectTickets = async () => {
-        const ticketElements = await page.$$('.sc-57jg3s-0.ifTptv'); // Update this if the selector is different
+        const ticketElements = await page.$$('.sc-57jg3s-0.ifTptv');
 
         for (const ticketElement of ticketElements) {
             try {
@@ -69,15 +33,14 @@ const outputFile = "ticket_info_12_25.txt";
                     return rowMatch ? rowMatch[1] : null;
                 });
 
-                const priceText = await ticketElement.$eval('.sc-hlalgf-1', el => el.innerText.trim());
-                const price = parseFloat(priceText.replace(/[^\d.]/g, ''));
-                const estimatedPrice = (price * 1.3).toFixed(2);
+                const price = await ticketElement.$eval('.sc-hlalgf-1', el => el.innerText.trim());
 
                 if (section && row) {
-                    const ticketInfo = `Section: ${section}, Row: ${row}, Price: ${priceText}, Est. Price: $${estimatedPrice}`;
+                    const ticketInfo = `Section: ${section}, Row: ${row}, Price: ${price}`;
                     if (!collectedTickets.has(ticketInfo)) {
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);
+                        // Consider writing to file every 5 tickets or on specific intervals
                     }
                 }
             } catch (error) {
@@ -113,6 +76,6 @@ const outputFile = "ticket_info_12_25.txt";
     while (true) {
         await collectTickets(); // Collect tickets based on the visible content
         writeTicketsToFile(); // Write to file after each collection iteration
-        await new Promise(resolve => setTimeout(resolve, 0)); // Delay between iterations
+        await new Promise(resolve => setTimeout(resolve, 100)); // Delay between iterations
     }
 })();
