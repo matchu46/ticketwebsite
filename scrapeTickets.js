@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-12-25-2024/event/154770086/?quantity=2";
-const outputFile = "ticket_info_12_25.txt";
+const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-2-8-2025/event/154770085/?quantity=2";
+const outputFile = "ticket_info_02_08.txt";
 
 (async () => {
     const browser = await puppeteer.launch({
@@ -27,7 +27,7 @@ const outputFile = "ticket_info_12_25.txt";
     });
 
     // Optionally, take a screenshot to check the greyed-out state
-    await page.screenshot({ path: 'debug_screenshot.png' }); // Debug screenshot
+    //await page.screenshot({ path: 'debug_screenshot.png' }); // Debug screenshot
 
     // Inject the scrolling script into the page
     await page.evaluate(() => {
