@@ -1,0 +1,101 @@
+/* Basic container for the tickets section */
+.tickets-container {
+    padding: 0px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Title for the tickets section */
+  .tickets-title {
+    max-width: 1000px;
+    padding: 20px;
+    font-size: 1.8rem;
+    /*margin-bottom: 20px;*/
+    color: #333;
+    margin: 20px auto;
+  }
+  
+  /* Styling for the table displaying the ticket information */
+  .tickets-table {
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    /*margin-top: 20px;*/
+    margin: 20px auto;
+  }
+  
+  /* Table headers */
+  .tickets-table th {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Table rows */
+  .tickets-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Hover effect for rows */
+  .tickets-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Adjusting font size for readability */
+  .tickets-table, .tickets-title, .tickets-table td, .tickets-table th {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+  }
+  
+  /* Sort controls styling */
+  .sort-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sort-controls label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .sort-controls select {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  /* Filters styling */
+  .filters {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+  
+  .price-range, .sort-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
+  }
+  
+  .price-range label, .sort-controls label {
+    font-weight: bold;
+  }
+  
+  input[type="number"] {
+    padding: 5px;
+    font-size: 14px;
+    width: 80px;
+  }
+  
+  select {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
