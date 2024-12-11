@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-11-20-2024/event/154770080/?qid=24e3298a63bcfbd58f65bcd783136755&index=stubhub&ut=0f02c2f5fa9a11994a37229ffb5950bb36ccaab3&quantity=2";
+const url = "https://stubhub.com/phoenix-suns-phoenix-tickets-1-9-2025/event/154770084/?quantity=2";
 const outputFile = "ticket_info_11_20.txt";
 
 (async () => {
