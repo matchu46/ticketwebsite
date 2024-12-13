@@ -12,9 +12,16 @@ export default function Tickets() {
 
     useEffect(() => {
         fetch('http://localhost:5000/tickets')
-            .then((response) => response.json())
-            .then((data) => setTickets(data));
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => setTickets(data))
+            .catch((error) => console.error('Error fetching ticket data:', error));
     }, []);
+    
 
     const handleSortChange = (e) => {
         const { name, value } = e.target;
@@ -101,7 +108,8 @@ export default function Tickets() {
                             <th>Section</th>
                             <th>Row</th>
                             <th>Price</th>
-                            <th>Estimated Price</th>
+                            <th>Estimated Price After Taxes</th>
+                            <th>Link</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,6 +119,11 @@ export default function Tickets() {
                                 <td>{ticket.row}</td>
                                 <td>{ticket.price}</td>
                                 <td>{ticket.estPrice}</td>
+                                <td>
+                                    <a href={ticket.url} target="_blank" rel="noopener noreferrer">
+                                        View Ticket
+                                    </a>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

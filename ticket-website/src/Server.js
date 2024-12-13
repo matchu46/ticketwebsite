@@ -11,7 +11,12 @@ app.use(cors());
 // Serve ticket data
 app.get('/tickets', (req, res) => {
     // Use path.resolve to get the absolute path to the ticket file
-    const filePath = path.resolve(__dirname, 'ticket_info_02_08.txt'); // Adjust this to your correct file path
+    const filePath = path.resolve(__dirname, 'sun_sh_01_09.txt'); // Adjust this to your correct file path
+
+    if (!fs.existsSync(filePath)) {
+        console.error('File not found:', filePath);
+        return res.status(404).send('Ticket file not found.');
+    }
 
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -21,14 +26,14 @@ app.get('/tickets', (req, res) => {
     
         // Process file data into tickets
         const tickets = data.split('\n').map(line => {
-            // Match the structure: Section: <number>, Row: <number>, Price: $<amount>, Est. Price: $<amount>
-            const regex = /Section: (\d+), Row: (\d+), Price: \$([\d\.]+), Est\. Price: \$([\d\.]+)/;
+            // Match the structure: Section: <number>, Row: <number>, Price: $<amount>, Est. Price: $<amount>, URL: <string>
+            const regex = /Section: (\d+), Row: (\d+), Price: \$([\d\.]+), Est\. Price: \$([\d\.]+), URL: (.+)/;
             const match = line.match(regex);
 
             if (match) {
                 // Return the ticket information as an object
-                const [, section, row, price, estPrice] = match;
-                return { section, row, price: `$${price}`, estPrice: `$${estPrice}` };
+                const [, section, row, price, estPrice, url] = match;
+                return { section, row, price: `$${price}`, estPrice: `$${estPrice}`, url };
             }
             return null; // Return null if no match found
         }).filter(ticket => ticket !== null); // Remove null values
