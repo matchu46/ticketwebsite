@@ -1,4 +1,5 @@
 const express = require('express');
+const { Ticket } = require('./models/ticket');
 const fs = require('fs');
 const path = require('path');  // Import the path module
 const cors = require('cors');  // To allow frontend access
@@ -42,6 +43,40 @@ app.get('/tickets', (req, res) => {
         res.json(tickets); // Send tickets as JSON
     });
 });
+
+app.post('/import-tickets', async (req, res) => {
+    const filePath = path.resolve(__dirname, 'sun_sh_01_09.txt');
+
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send('Ticket file not found.');
+    }
+
+    fs.readFile(filePath, 'utf8', async (err, data) => {
+        if (err) {
+            return res.status(500).send('Error reading ticket data.');
+        }
+
+        try {
+            const tickets = data.split('\n').map(line => {
+                const regex = /Section: (\d+), Row: (\d+), Price: \$([\d\.]+), Est\. Price: \$([\d\.]+), URL: (.+)/;
+                const match = line.match(regex);
+
+                if (match) {
+                    const [, section, row, price, estPrice, url] = match;
+                    return { section, row, price: parseFloat(price), estPrice: parseFloat(estPrice), url };
+                }
+                return null;
+            }).filter(ticket => ticket !== null);
+
+            await Ticket.bulkCreate(tickets);
+            res.send('Tickets imported successfully!');
+        } catch (error) {
+            console.error('Error saving tickets:', error);
+            res.status(500).send('Error saving tickets.');
+        }
+    });
+});
+
 
 // Start the server
 app.listen(PORT, () => {

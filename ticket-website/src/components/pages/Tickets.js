@@ -121,7 +121,7 @@ export default function Tickets() {
                                 <td>{ticket.estPrice}</td>
                                 <td>
                                     <a href={ticket.url} target="_blank" rel="noopener noreferrer">
-                                        View Ticket
+                                        Stub Hub Link
                                     </a>
                                 </td>
                             </tr>
