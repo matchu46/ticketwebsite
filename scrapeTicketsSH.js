@@ -1,69 +1,103 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+// Required dependencies
+const puppeteer = require('puppeteer');  // For web scraping
+const fs = require('fs');                // For file operations
 
-const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-1-12-2025/event/154770096/?quantity=2";
-const outputFile = "sun_sh_01_12.txt";
+// Configuration constants
+const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-2-27-2025/event/154770118/?quantity=2";
+const outputFile = "sun_sh_02_27.txt";
 
+// Main function using async/await for browser automation
 (async () => {
+    // Launch browser with specific Chrome path
     const browser = await puppeteer.launch({
         executablePath: 'C:\\Users\\Owner\\Downloads\\chrome-win64\\chrome-win64\\chrome.exe',
-        headless: false, // Set to false to see the browser window
-        
+        headless: false,  // Show the browser window for debugging
     });
 
+    // Create a new page
     const page = await browser.newPage();
-   
 
-    // Go to the page and wait for the network to be idle
+    // Navigate to the target URL and wait for network activity to settle
     await page.goto(url, { waitUntil: 'networkidle2' });
 
-    // Hide any overlay or loading spinner (if present)
+    // Remove any loading overlays that might interfere with scraping
     await page.evaluate(() => {
-        const overlay = document.querySelector('.loading-overlay, .spinner-class'); // Replace with the correct class if needed
+        const overlay = document.querySelector('.loading-overlay, .spinner-class');
         if (overlay) {
-            overlay.style.display = 'none'; // Hide the overlay
+            overlay.style.display = 'none';
         }
     });
 
-   
-
+    // Set to store unique ticket information and avoid duplicates
     const collectedTickets = new Set();
 
-    // Function to collect ticket data
+    // Function to collect ticket information from the page
     const collectTickets = async () => {
-        const ticketElements = await page.$$('.sc-57jg3s-0.ifTptv'); // Check if this selector is still correct
+        // Find all ticket elements that have a listing ID
+        const ticketElements = await page.$$('div[data-listing-id]');
+        console.log(`Found ${ticketElements.length} ticket elements.`);
 
+        // Process each ticket element
         for (const ticketElement of ticketElements) {
             try {
-                const section = await ticketElement.$eval('.sc-hlalgf-0.sc-hlalgf-6.jfjuff.jXdyTR', el => {
+                // Extract the listing ID from the ticket element
+                const listingId = await ticketElement.evaluate(el => el.getAttribute('data-listing-id'));
+                console.log(`Extracted listingId: ${listingId}`);
+
+                // Skip if no listing ID is found
+                if (!listingId) {
+                    console.error('Listing ID not found for this element. Skipping...');
+                    continue;
+                }
+
+                // Construct the complete ticket URL with the listing ID
+                const ticketUrl = `https://www.stubhub.com/phoenix-suns-phoenix-tickets-2-27-2025/event/154770118/?quantity=2&listingId=${listingId}`;
+
+                // Extract section information using the specific class selector
+                const section = await ticketElement.$eval('.sc-1t1b4cp-0.sc-1t1b4cp-6.eMtQWq.dQzlcE', el => {
                     const sectionText = el.innerText.trim();
                     const sectionMatch = sectionText.match(/Section\s*(\d+)/);
                     return sectionMatch ? sectionMatch[1] : null;
                 });
 
-                const row = await ticketElement.$eval('.sc-hlalgf-25.bSdQWo', el => {
+                // Extract row information using the specific class selector
+                const row = await ticketElement.$eval('.sc-1t1b4cp-25.eYtDdR', el => {
                     const rowText = el.innerText.trim();
                     const rowMatch = rowText.match(/Row\s*(\d+)/);
                     return rowMatch ? rowMatch[1] : null;
                 });
 
-                const priceText = await ticketElement.$eval('.sc-hlalgf-0.sc-hlalgf-1.jfjuff.tOKfM', el => el.innerText.trim());
+                // Extract and clean up price text
+                const priceText = await ticketElement.$eval('.sc-1t1b4cp-0.sc-1t1b4cp-1.eMtQWq.jJnid', el => el.innerText.trim());
                 let price = parseFloat(priceText.replace(/[^\d.]/g, ''));
 
-                // Price estimate based on the price ranges
+                // Calculate estimated final price based on price ranges
                 let estimatedPrice = 0;
                 if (price <= 25) {
-                    estimatedPrice = (price * 1.8).toFixed(2); // For prices $25 or less
+                    estimatedPrice = (price * 1.8).toFixed(2);  // 80% markup for tickets <= $25
                 } else if (price > 25 && price <= 60) {
-                    estimatedPrice = (price * 1.6).toFixed(2); // For prices between $25 and $60
+                    estimatedPrice = (price * 1.6).toFixed(2);  // 60% markup for tickets $26-$60
                 } else if (price > 60 && price <= 130) {
-                    estimatedPrice = (price * 1.45).toFixed(2); // For prices between $61 and $130
+                    estimatedPrice = (price * 1.45).toFixed(2); // 45% markup for tickets $61-$130
                 } else {
-                    estimatedPrice = (price * 1.3).toFixed(2); // For prices above $130
+                    estimatedPrice = (price * 1.3).toFixed(2);  // 30% markup for tickets > $130
                 }
 
+                // Only process tickets that have both section and row information
                 if (section && row) {
-                    const ticketInfo = `Section: ${section}, Row: ${row}, Price: ${priceText}, Est. Price: $${estimatedPrice}, URL: ${url}`;
+                    // Create formatted ticket information string
+                    const ticketInfo = [
+                        `Date: 02-27-2025`,
+                        `Home Team: Suns`,
+                        `Away Team: Pelicans`,
+                        `Section: ${section}`,
+                        `Row: ${row}`,
+                        `Price: ${priceText}`,
+                        `Est. Price: $${estimatedPrice}`,
+                        `URL: ${ticketUrl}`
+                    ].join(', ');
+
+                    // Add to collection if it's a new ticket
                     if (!collectedTickets.has(ticketInfo)) {
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);
@@ -76,7 +110,7 @@ const outputFile = "sun_sh_01_12.txt";
         console.log(`Total collected tickets: ${collectedTickets.size}`);
     };
 
-    // Function to write collected tickets to file
+    // Function to save collected tickets to file
     const writeTicketsToFile = () => {
         try {
             fs.writeFileSync(outputFile, Array.from(collectedTickets).join('\n'));
@@ -86,22 +120,22 @@ const outputFile = "sun_sh_01_12.txt";
         }
     };
 
-    // Listen for keyboard input to stop the collection
+    // Set up input handling to allow stopping the script
     process.stdin.setEncoding('utf8');
     process.stdin.resume();
     process.stdin.on('data', async (input) => {
         if (input.trim() === '') {
             console.log('Stopping the collection of tickets...');
             await browser.close();
-            writeTicketsToFile(); // Final save before exit
+            writeTicketsToFile();
             process.exit(0);
         }
     });
 
-    // Main collection loop
+    // Main loop - continuously collect and save tickets
     while (true) {
-        await collectTickets(); // Collect tickets based on the visible content
-        writeTicketsToFile();   // Write to file after each collection iteration
-        await new Promise(resolve => setTimeout(resolve, 0)); // Delay between iterations
+        await collectTickets();
+        writeTicketsToFile();
+        await new Promise(resolve => setTimeout(resolve, 0)); // Minimal delay between iterations
     }
 })();
