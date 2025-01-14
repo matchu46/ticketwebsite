@@ -18,10 +18,21 @@ export default function Tickets() {
                 }
                 return response.json();
             })
-            .then((data) => setTickets(data))
+            .then((data) => {
+                // Process the data to ensure numeric values
+                const processedData = data.map(ticket => ({
+                    ...ticket,
+                    price: typeof ticket.price === 'string' 
+                        ? parseFloat(ticket.price.replace('$', '').replace(',', ''))
+                        : ticket.price,
+                    est_price: typeof ticket.est_price === 'string'
+                        ? parseFloat(ticket.est_price.replace('$', '').replace(',', ''))
+                        : ticket.est_price
+                }));
+                setTickets(processedData);
+            })
             .catch((error) => console.error('Error fetching ticket data:', error));
     }, []);
-    
 
     const handleSortChange = (e) => {
         const { name, value } = e.target;
@@ -43,28 +54,40 @@ export default function Tickets() {
 
     // Filtering and Sorting tickets
     const filteredAndSortedTickets = [...tickets]
-        .filter((ticket) => {
-            const price = parseFloat(ticket.price.replace('$', '').replace(',', ''));
-            return price >= minPrice && price <= maxPrice; // Filter by price range
-        })
-        .sort((a, b) => {
-            if (sortBy === 'price') {
-                const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-                const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-                return sortDirection === 'asc' ? priceA - priceB : priceB - priceA;
-            } else if (sortBy === 'section') {
-                return sortDirection === 'asc' ? a.section - b.section : b.section - a.section;
-            }
-            return 0;
-        });
+    .filter((ticket) => {
+        // Ensure price is a number before filtering
+        const price = typeof ticket.price === 'string' 
+            ? parseFloat(ticket.price.replace('$', '').replace(',', ''))
+            : ticket.price;
+
+        return price >= minPrice && price <= maxPrice; // Filter by price range
+    })
+    .sort((a, b) => {
+        if (sortBy === 'price') {
+            const priceA = typeof a.price === 'string' 
+                ? parseFloat(a.price.replace('$', '').replace(',', ''))
+                : a.price;
+            const priceB = typeof b.price === 'string' 
+                ? parseFloat(b.price.replace('$', '').replace(',', ''))
+                : b.price;
+
+            return sortDirection === 'asc' ? priceA - priceB : priceB - priceA;
+        } else if (sortBy === 'section') {
+            return sortDirection === 'asc' ? a.section - b.section : b.section - a.section;
+        }
+        return 0;
+    });
+
+
 
     return (
         <div className="tickets-container">
             <h1 className="tickets-title">Ticket Prices</h1>
-            
+
             <div className="filters">
                 <div className="price-range">
-                    <label>Min Price: 
+                    <label>
+                        Min Price:
                         <input
                             type="number"
                             name="minPrice"
@@ -73,7 +96,8 @@ export default function Tickets() {
                             min="0"
                         />
                     </label>
-                    <label>Max Price: 
+                    <label>
+                        Max Price:
                         <input
                             type="number"
                             name="maxPrice"
@@ -84,13 +108,15 @@ export default function Tickets() {
                     </label>
                 </div>
                 <div className="sort-controls">
-                    <label>Sort By: 
+                    <label>
+                        Sort By:
                         <select name="sortBy" onChange={handleSortChange} value={sortBy}>
                             <option value="section">Section</option>
                             <option value="price">Price</option>
                         </select>
                     </label>
-                    <label>Sort Direction: 
+                    <label>
+                        Sort Direction:
                         <select name="sortDirection" onChange={handleSortChange} value={sortDirection}>
                             <option value="asc">Ascending</option>
                             <option value="desc">Descending</option>
@@ -105,6 +131,7 @@ export default function Tickets() {
                 <table className="tickets-table">
                     <thead>
                         <tr>
+                            <th>Date</th>
                             <th>Section</th>
                             <th>Row</th>
                             <th>Price</th>
@@ -115,10 +142,11 @@ export default function Tickets() {
                     <tbody>
                         {filteredAndSortedTickets.map((ticket, index) => (
                             <tr key={index}>
+                                <td>{ticket.date}</td>
                                 <td>{ticket.section}</td>
                                 <td>{ticket.row}</td>
-                                <td>{ticket.price}</td>
-                                <td>{ticket.estPrice}</td>
+                                <td>${ticket.price.toFixed(2)}</td>
+                                <td>${ticket.est_price.toFixed(2)}</td>
                                 <td>
                                     <a href={ticket.url} target="_blank" rel="noopener noreferrer">
                                         Stub Hub Link

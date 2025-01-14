@@ -1,82 +1,65 @@
 const express = require('express');
-const { Ticket } = require('./models/ticket');
-const fs = require('fs');
-const path = require('path');  // Import the path module
-const cors = require('cors');  // To allow frontend access
+const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors');
+
 const app = express();
 const PORT = 5000;
 
-// Enable CORS for frontend-backend communication
+// Enable CORS
 app.use(cors());
 
-// Serve ticket data
+// Database connection
+const db = new sqlite3.Database('./tickets.db');
+
+// Get all tickets or apply filters
 app.get('/tickets', (req, res) => {
-    // Use path.resolve to get the absolute path to the ticket file
-    const filePath = path.resolve(__dirname, 'sun_sh_01_09.txt'); // Adjust this to your correct file path
+    const { section, min_price, max_price } = req.query;
+    let query = 'SELECT * FROM tickets WHERE 1=1';
+    const params = [];
 
-    if (!fs.existsSync(filePath)) {
-        console.error('File not found:', filePath);
-        return res.status(404).send('Ticket file not found.');
+    if (section) {
+        query += ' AND section = ?';
+        params.push(section);
     }
 
-    fs.readFile(filePath, 'utf8', (err, data) => {
+    if (min_price) {
+        query += ' AND price >= ?';
+        params.push(min_price);
+    }
+
+    if (max_price) {
+        query += ' AND price <= ?';
+        params.push(max_price);
+    }
+
+    db.all(query, params, (err, rows) => {
         if (err) {
-            return res.status(500).send('Error reading ticket data.');
+            console.error('Error querying database:', err);
+            return res.status(500).send('Database error.');
         }
-        console.log('Data read from file:', data); // Log file content for debugging
-    
-        // Process file data into tickets
-        const tickets = data.split('\n').map(line => {
-            // Match the structure: Section: <number>, Row: <number>, Price: $<amount>, Est. Price: $<amount>, URL: <string>
-            const regex = /Section: (\d+), Row: (\d+), Price: \$([\d\.]+), Est\. Price: \$([\d\.]+), URL: (.+)/;
-            const match = line.match(regex);
-
-            if (match) {
-                // Return the ticket information as an object
-                const [, section, row, price, estPrice, url] = match;
-                return { section, row, price: `$${price}`, estPrice: `$${estPrice}`, url };
-            }
-            return null; // Return null if no match found
-        }).filter(ticket => ticket !== null); // Remove null values
-
-        console.log('Tickets array:', tickets); // Log the parsed tickets array
-        res.json(tickets); // Send tickets as JSON
+        res.json(rows);
     });
 });
 
-app.post('/import-tickets', async (req, res) => {
-    const filePath = path.resolve(__dirname, 'sun_sh_01_09.txt');
+// Update ticket information
+app.put('/tickets/:id', express.json(), (req, res) => {
+    const { id } = req.params;
+    const { date, home_team, away_team, section, row, price, est_price, url } = req.body;
 
-    if (!fs.existsSync(filePath)) {
-        return res.status(404).send('Ticket file not found.');
-    }
+    const query = `
+        UPDATE tickets
+        SET date = ?, home_team = ?, away_team = ?, section = ?, row = ?, price = ?, est_price = ?, url = ?
+        WHERE id = ?
+    `;
 
-    fs.readFile(filePath, 'utf8', async (err, data) => {
+    db.run(query, [date, home_team, away_team, section, row, price, est_price, url, id], function (err) {
         if (err) {
-            return res.status(500).send('Error reading ticket data.');
+            console.error('Error updating ticket:', err);
+            return res.status(500).send('Database error.');
         }
-
-        try {
-            const tickets = data.split('\n').map(line => {
-                const regex = /Section: (\d+), Row: (\d+), Price: \$([\d\.]+), Est\. Price: \$([\d\.]+), URL: (.+)/;
-                const match = line.match(regex);
-
-                if (match) {
-                    const [, section, row, price, estPrice, url] = match;
-                    return { section, row, price: parseFloat(price), estPrice: parseFloat(estPrice), url };
-                }
-                return null;
-            }).filter(ticket => ticket !== null);
-
-            await Ticket.bulkCreate(tickets);
-            res.send('Tickets imported successfully!');
-        } catch (error) {
-            console.error('Error saving tickets:', error);
-            res.status(500).send('Error saving tickets.');
-        }
+        res.send({ updated: this.changes });
     });
 });
-
 
 // Start the server
 app.listen(PORT, () => {
