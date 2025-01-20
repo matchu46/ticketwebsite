@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-1-9-2025--sports-nba-basketball/production/5159788";
-const outputFile = "sun_vs_01_09.txt";
+const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-2-27-2025--sports-nba-basketball/production/5159899";
+const outputFile = "sun_vs_02_27.txt";
 
 (async () => {
     const browser = await puppeteer.launch({
@@ -36,7 +36,7 @@ const outputFile = "sun_vs_01_09.txt";
                 const ticketUrlValue = await ticketUrl.jsonValue();
 
                 // Extract Section (e.g., "Lower Level 119" -> "119")
-                const sectionText = await ticketElement.$eval('.styles_box__wGddV.styles_align-center__8SsPh.styles_display-flex__xeAke', el => el.innerText.trim());
+                const sectionText = await ticketElement.$eval('.MuiTypography-root.MuiTypography-small-medium.styles_nowrap___p2Eb.mui-12s2z4k', el => el.innerText.trim());
                 const sectionMatch = sectionText.match(/(\d+)/);
                 const section = sectionMatch ? sectionMatch[0] : null;
 
@@ -46,7 +46,7 @@ const outputFile = "sun_vs_01_09.txt";
                 const row = rowMatch ? rowMatch[0] : null;
 
                 // Extract Price using the updated class selector that targets only the price
-                const priceText = await ticketElement.$eval('.styles_priceContent__wh8Bx.styles_box__wGddV.styles_box-margin-right-3__SHYvM .styles_box__wGddV.styles_align-center__8SsPh.styles_display-flex__xeAke', el => el.innerText.trim());
+                const priceText = await ticketElement.$eval('.MuiTypography-root.MuiTypography-body-bold.styles_nowrap___p2Eb.mui-1nxievo', el => el.innerText.trim());
 
                 // Remove unwanted characters like the extra dollar signs and 'ea'
                 let price = priceText.replace(/[^0-9.]/g, ''); // Remove everything except digits and periods
@@ -57,13 +57,13 @@ const outputFile = "sun_vs_01_09.txt";
                 }
 
                 // Parse price as a float and remove 'ea' text
-                price = parseFloat(price); 
+                price = parseFloat(price);
 
                 // Price estimate (uniform multiplier of 1.4)
                 const estimatedPrice = (price * 1.4).toFixed(2);
 
                 if (section && row) {
-                    const ticketInfo = `Section: ${section}, Row: ${row}, Price: $${price.toFixed(2)}, Est. Price: $${estimatedPrice}, Ticket URL: ${ticketUrlValue}`;
+                    const ticketInfo = `Date: 02-27-2025, Home Team: Suns, Away Team: Pelicans, Section: ${section}, Row: ${row}, Price: $${price.toFixed(2)}, Est. Price: $${estimatedPrice}, URL: ${ticketUrlValue}`;
                     if (!collectedTickets.has(ticketInfo)) {
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);

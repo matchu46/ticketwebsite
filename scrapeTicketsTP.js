@@ -1,8 +1,11 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-const url = "https://www.tickpick.com/buy-phoenix-suns-vs-utah-jazz-tickets-footprint-center-1-11-25-3pm/6634421/?qty=2-false";
-const outputFile = "sun_tp_01_11.txt";
+const url = "https://www.tickpick.com/buy-phoenix-suns-vs-new-orleans-pelicans-tickets-footprint-center-2-27-25-8pm/6634468/?qty=2-false";
+const outputFile = "sun_tp_02_27.txt";
+const gameDate = "02-27-2025";
+const homeTeam = "Suns";
+const awayTeam = "Pelicans";
 
 (async () => {
     const browser = await puppeteer.launch({
@@ -36,9 +39,12 @@ const outputFile = "sun_tp_01_11.txt";
 
                 // Extract price information from 'sendE' class
                 const priceText = await ticketElement.$eval('.sendE', el => el.innerText.trim());
+                
+                // Remove "ALL-IN" or other text after the price
+                const cleanPrice = priceText.match(/\$\d+/) ? priceText.match(/\$\d+/)[0] : priceText;
 
                 if (sectionNumber && rowNumber) {
-                    const ticketInfo = `Section: ${sectionNumber}, Row: ${rowNumber}, Price: ${priceText}, URL: ${url}`;
+                    const ticketInfo = `Date: ${gameDate}, Home Team: ${homeTeam}, Away Team: ${awayTeam}, Section: ${sectionNumber}, Row: ${rowNumber}, Price: ${cleanPrice}, Est. Price: ${cleanPrice}, URL: ${url}`;
                     if (!collectedTickets.has(ticketInfo)) {
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);
