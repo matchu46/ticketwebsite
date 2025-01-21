@@ -44,15 +44,15 @@ app.get('/tickets', (req, res) => {
 // Update ticket information
 app.put('/tickets/:id', express.json(), (req, res) => {
     const { id } = req.params;
-    const { date, home_team, away_team, section, row, price, est_price, url } = req.body;
+    const { date, home_team, away_team, section, row, price, est_price, url, source, created_at } = req.body;
 
     const query = `
         UPDATE tickets
-        SET date = ?, home_team = ?, away_team = ?, section = ?, row = ?, price = ?, est_price = ?, url = ?
+        SET date = ?, home_team = ?, away_team = ?, section = ?, row = ?, price = ?, est_price = ?, url = ?, source = ?, created_at = ?
         WHERE id = ?
     `;
 
-    db.run(query, [date, home_team, away_team, section, row, price, est_price, url, id], function (err) {
+    db.run(query, [date, home_team, away_team, section, row, price, est_price, url, source, created_at, id], function (err) {
         if (err) {
             console.error('Error updating ticket:', err);
             return res.status(500).send('Database error.');

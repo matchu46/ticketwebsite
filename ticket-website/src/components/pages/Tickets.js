@@ -134,7 +134,6 @@ export default function Tickets() {
                             <th>Date</th>
                             <th>Section</th>
                             <th>Row</th>
-                            <th>Price</th>
                             <th>Estimated Price After Taxes</th>
                             <th>Link</th>
                         </tr>
@@ -145,11 +144,10 @@ export default function Tickets() {
                                 <td>{ticket.date}</td>
                                 <td>{ticket.section}</td>
                                 <td>{ticket.row}</td>
-                                <td>${ticket.price.toFixed(2)}</td>
-                                <td>${ticket.est_price.toFixed(2)}</td>
+                                <td>${(ticket.estimated_price ?? 0).toFixed(2)}</td>
                                 <td>
                                     <a href={ticket.url} target="_blank" rel="noopener noreferrer">
-                                        Stub Hub Link
+                                        <td>{ticket.source}</td>
                                     </a>
                                 </td>
                             </tr>

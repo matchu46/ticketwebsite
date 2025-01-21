@@ -29,7 +29,7 @@ db.run(`
 
 (async () => {
     const browser = await puppeteer.launch({
-        executablePath: 'C:\\Users\\Owner\\Downloads\\chrome-win64\\chrome-win64\\chrome.exe',
+        executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
         headless: false, // Set to false to see the browser window
     });
 
