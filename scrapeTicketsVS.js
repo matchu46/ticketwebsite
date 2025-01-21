@@ -1,8 +1,31 @@
 const puppeteer = require('puppeteer');
+const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
 const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-2-27-2025--sports-nba-basketball/production/5159899";
 const outputFile = "sun_vs_02_27.txt";
+
+// Database file and connection
+const dbFile = "tickets.db";
+const db = new sqlite3.Database(dbFile);
+
+// Initialize the database and create the `tickets` table if it doesn't exist
+db.run(`
+    CREATE TABLE IF NOT EXISTS tickets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL,
+        home_team TEXT NOT NULL,
+        away_team TEXT NOT NULL,
+        section TEXT,
+        row TEXT,
+        price REAL,
+        estimated_price REAL,
+        url TEXT UNIQUE,
+        source TEXT NOT NULL
+    )
+`, (err) => {
+    if (err) console.error("Error creating table:", err.message);
+});
 
 (async () => {
     const browser = await puppeteer.launch({
@@ -24,6 +47,19 @@ const outputFile = "sun_vs_02_27.txt";
     });
 
     const collectedTickets = new Set();
+    const source = "Vivid Seats"; // Website source
+    const date = "02-27-2025"; // Game date
+    const homeTeam = "Suns";
+    const awayTeam = "Pelicans";
+
+    // Clear old data from the database for this source, date, and home_team
+    db.run(`DELETE FROM tickets WHERE source = ? AND date = ? AND home_team = ?`, [source, date, homeTeam], (err) => {
+        if (err) {
+            console.error("Error deleting old data:", err.message);
+        } else {
+            console.log(`Old data cleared for ${source} on ${date} for home team ${homeTeam}`);
+        }
+    });
 
     // Function to collect ticket data
     const collectTickets = async () => {
@@ -35,38 +71,43 @@ const outputFile = "sun_vs_02_27.txt";
                 const ticketUrl = await ticketElement.getProperty('href');
                 const ticketUrlValue = await ticketUrl.jsonValue();
 
-                // Extract Section (e.g., "Lower Level 119" -> "119")
+                // Extract Section
                 const sectionText = await ticketElement.$eval('.MuiTypography-root.MuiTypography-small-medium.styles_nowrap___p2Eb.mui-12s2z4k', el => el.innerText.trim());
                 const sectionMatch = sectionText.match(/(\d+)/);
                 const section = sectionMatch ? sectionMatch[0] : null;
 
-                // Extract Row (e.g., "Row 15" -> "15")
+                // Extract Row
                 const rowText = await ticketElement.$eval('.MuiTypography-root.MuiTypography-caption-regular.styles_nowrap___p2Eb.mui-x6azc9', el => el.innerText.trim());
                 const rowMatch = rowText.match(/(\d+)/);
                 const row = rowMatch ? rowMatch[0] : null;
 
-                // Extract Price using the updated class selector that targets only the price
+                // Extract Price
                 const priceText = await ticketElement.$eval('.MuiTypography-root.MuiTypography-body-bold.styles_nowrap___p2Eb.mui-1nxievo', el => el.innerText.trim());
-
-                // Remove unwanted characters like the extra dollar signs and 'ea'
-                let price = priceText.replace(/[^0-9.]/g, ''); // Remove everything except digits and periods
-
-                // If the price has two dollar signs, just keep one
-                if (priceText.startsWith('$$')) {
-                    price = priceText.replace('$$', '$').replace(/[^0-9.]/g, ''); // Keep a single dollar sign
-                }
-
-                // Parse price as a float and remove 'ea' text
+                let price = priceText.replace(/[^0-9.]/g, '');
                 price = parseFloat(price);
 
-                // Price estimate (uniform multiplier of 1.4)
+                // Price estimate
                 const estimatedPrice = (price * 1.4).toFixed(2);
 
                 if (section && row) {
-                    const ticketInfo = `Date: 02-27-2025, Home Team: Suns, Away Team: Pelicans, Section: ${section}, Row: ${row}, Price: $${price.toFixed(2)}, Est. Price: $${estimatedPrice}, URL: ${ticketUrlValue}`;
+                    const ticketInfo = `Date: ${date}, Home Team: ${homeTeam}, Away Team: ${awayTeam}, Section: ${section}, Row: ${row}, Price: $${price.toFixed(2)}, Est. Price: $${estimatedPrice}, URL: ${ticketUrlValue}`;
                     if (!collectedTickets.has(ticketInfo)) {
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);
+
+                        // Insert the ticket into the database
+                        db.run(
+                            `INSERT OR IGNORE INTO tickets (date, home_team, away_team, section, row, price, estimated_price, url, source)
+                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                            [date, homeTeam, awayTeam, section, row, price, estimatedPrice, ticketUrlValue, source],
+                            function (err) {
+                                if (err) {
+                                    console.error("Error inserting data:", err.message);
+                                } else {
+                                    console.log(`Ticket added to database: Row ID ${this.lastID}`);
+                                }
+                            }
+                        );
                     }
                 }
             } catch (error) {

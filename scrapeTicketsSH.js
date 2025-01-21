@@ -1,10 +1,36 @@
 // Required dependencies
 const puppeteer = require('puppeteer');  // For web scraping
+const sqlite3 = require('sqlite3').verbose(); // For SQLite DB
 const fs = require('fs');                // For file operations
 
 // Configuration constants
 const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-2-27-2025/event/154770118/?quantity=2";
 const outputFile = "sun_sh_02_27.txt";
+const gameDate = "02-27-2025";
+const homeTeam = "Suns";
+const awayTeam = "Pelicans";
+const source = "StubHub"; // Assuming this is the source
+
+// Initialize the database and create the `tickets` table if it doesn't exist
+const dbFile = "tickets.db";
+const db = new sqlite3.Database(dbFile);
+
+db.run(`
+    CREATE TABLE IF NOT EXISTS tickets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL,
+        home_team TEXT NOT NULL,
+        away_team TEXT NOT NULL,
+        section TEXT,
+        row TEXT,
+        price REAL,
+        estimated_price REAL,
+        url TEXT UNIQUE,
+        source TEXT NOT NULL
+    )
+`, (err) => {
+    if (err) console.error("Error creating table:", err.message);
+});
 
 // Main function using async/await for browser automation
 (async () => {
@@ -87,9 +113,9 @@ const outputFile = "sun_sh_02_27.txt";
                 if (section && row) {
                     // Create formatted ticket information string
                     const ticketInfo = [
-                        `Date: 02-27-2025`,
-                        `Home Team: Suns`,
-                        `Away Team: Pelicans`,
+                        `Date: ${gameDate}`,
+                        `Home Team: ${homeTeam}`,
+                        `Away Team: ${awayTeam}`,
                         `Section: ${section}`,
                         `Row: ${row}`,
                         `Price: ${priceText}`,
@@ -101,6 +127,20 @@ const outputFile = "sun_sh_02_27.txt";
                     if (!collectedTickets.has(ticketInfo)) {
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);
+
+                        // Insert ticket into database
+                        db.run(
+                            `INSERT OR REPLACE INTO tickets (date, home_team, away_team, section, row, price, estimated_price, url, source)
+                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                            [gameDate, homeTeam, awayTeam, section, row, price, estimatedPrice, ticketUrl, source],
+                            function (err) {
+                                if (err) {
+                                    console.error("Error inserting data:", err.message);
+                                } else {
+                                    console.log(`Ticket added to database: Row ID ${this.lastID}`);
+                                }
+                            }
+                        );
                     }
                 }
             } catch (error) {
