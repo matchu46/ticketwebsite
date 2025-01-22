@@ -29,7 +29,7 @@ function Navbar() {
       <nav className="navbar">
         <div class="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            AZTIX <i className='fas fa-ticket-alt' />
+            <img src="/images/logo.png" alt="Valley Tickets Logo" className="navbar-logo-image"/>
           </Link>
           <div class='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

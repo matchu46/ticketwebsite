@@ -53,7 +53,7 @@ function Footer() {
           </div>
           <div class='footer-link-items'>
             <h2>Social Media</h2>
-            <Link to='/'>Instagram</Link>
+            <a href='https://www.instagram.com/kai.gesino/' target='_blank' rel='noopener noreferrer'>Instagram</a>
             <Link to='/'>Facebook</Link>
             <Link to='/'>Youtube</Link>
             <Link to='/'>Twitter</Link>
@@ -64,11 +64,10 @@ function Footer() {
         <div class='social-media-wrap'>
           <div class='footer-logo'>
             <Link to='/' className='social-logo'>
-              AZTIX
-              <i class='fas fa-ticket-alt' />
+              <img src="/images/logo.png" alt="Valley Tickets Logo" className='footer-logo-image'/>
             </Link>
           </div>
-          <small class='website-rights'>AZTIX © 2024</small>
+          <small class='website-rights'>Valley Tickets © 2024</small>
           <div class='social-icons'>
             <Link
               class='social-icon-link facebook'
