@@ -2,8 +2,8 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-2-27-2025--sports-nba-basketball/production/5159899";
-const outputFile = "sun_vs_02_27.txt";
+const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-3-2-2025--sports-nba-basketball/production/5160149";
+const outputFile = "sun_vs_03_02.txt";
 
 // Database file and connection
 const dbFile = "tickets.db";
@@ -29,7 +29,7 @@ db.run(`
 
 (async () => {
     const browser = await puppeteer.launch({
-        executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+        executablePath:'C:\\Users\\Owner\\Downloads\\chrome-win64\\chrome-win64\\chrome.exe',
         headless: false, // Set to false to see the browser window
     });
 
@@ -48,9 +48,9 @@ db.run(`
 
     const collectedTickets = new Set();
     const source = "Vivid Seats"; // Website source
-    const date = "02-27-2025"; // Game date
+    const date = "03-02-2025"; // Game date
     const homeTeam = "Suns";
-    const awayTeam = "Pelicans";
+    const awayTeam = "Timberwolves";
 
     // Clear old data from the database for this source, date, and home_team
     db.run(`DELETE FROM tickets WHERE source = ? AND date = ? AND home_team = ?`, [source, date, homeTeam], (err) => {
@@ -95,16 +95,20 @@ db.run(`
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);
 
-                        // Insert the ticket into the database
+                        
                         db.run(
-                            `INSERT OR IGNORE INTO tickets (date, home_team, away_team, section, row, price, estimated_price, url, source)
+                            `INSERT OR REPLACE INTO tickets (date, home_team, away_team, section, row, price, estimated_price, url, source)
                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                             [date, homeTeam, awayTeam, section, row, price, estimatedPrice, ticketUrlValue, source],
                             function (err) {
                                 if (err) {
                                     console.error("Error inserting data:", err.message);
                                 } else {
-                                    console.log(`Ticket added to database: Row ID ${this.lastID}`);
+                                    if (this.changes > 0) { // A row was inserted or replaced
+                                        console.log(`Ticket added to database: Row ID ${this.lastID}`);
+                                    } else {
+                                        console.log(`No changes made (duplicate or conflict): ${ticketUrl}`);
+                                    }
                                 }
                             }
                         );
