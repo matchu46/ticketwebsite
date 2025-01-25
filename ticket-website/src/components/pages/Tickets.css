@@ -98,4 +98,54 @@
     padding: 5px;
     font-size: 14px;
   }
+
+  .date-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.date-button {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+
+.date-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.date-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tickets-table th,
+.tickets-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.seating-chart {
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
   
