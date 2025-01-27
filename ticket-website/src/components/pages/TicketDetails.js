@@ -7,6 +7,7 @@ export default function TicketDetails() {
     const [tickets, setTickets] = useState([]);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(1000);
+    const [sortOption, setSortOption] = useState('estimated_price');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,8 +26,17 @@ export default function TicketDetails() {
     }, [date]);
 
     const filteredTickets = tickets.filter(ticket => 
-        ticket.price >= minPrice && ticket.price <= maxPrice
+        ticket.estimated_price >= minPrice && ticket.estimated_price <= maxPrice
     );
+
+    const sortedTickets = [...filteredTickets].sort((a, b) => {
+        if (sortOption === 'estimated_price') {
+            return a.estimated_price - b.estimated_price;
+        } else if (sortOption === 'source') {
+            return a.source.localeCompare(b.source);
+        }
+        return 0;
+    });
 
     return (
         <div className="ticket-details-container">
@@ -36,24 +46,38 @@ export default function TicketDetails() {
             <h1>Tickets for {date}</h1>
             <img src="/images/footprint_seating_chart.png" alt="Seating Chart" className="seating-chart"/>
 
-            {/* Price Filters */}
+            {/* Filters */}
             <div className="filters">
-                <label>
-                    Min Price:
-                    <input
-                        type="number"
-                        value={minPrice}
-                        onChange={(e) => setMinPrice(Number(e.target.value))}
-                    />
-                </label>
-                <label>
-                    Max Price:
-                    <input
-                        type="number"
-                        value={maxPrice}
-                        onChange={(e) => setMaxPrice(Number(e.target.value))}
-                    />
-                </label>
+                <div>
+                    <label>
+                        Min Price:
+                        <input
+                            type="number"
+                            value={minPrice}
+                            onChange={(e) => setMinPrice(Number(e.target.value))}
+                        />
+                    </label>
+                    <label>
+                        Max Price:
+                        <input
+                            type="number"
+                            value={maxPrice}
+                            onChange={(e) => setMaxPrice(Number(e.target.value))}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Sort by:
+                        <select
+                            value={sortOption}
+                            onChange={(e) => setSortOption(e.target.value)}
+                        >
+                            <option value="estimated_price">Cheapest Price</option>
+                            <option value="source">Source (Website)</option>
+                        </select>
+                    </label>
+                </div>
             </div>
 
             {/* Tickets Table */}
@@ -70,11 +94,11 @@ export default function TicketDetails() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredTickets.map((ticket, index) => (
+                        {sortedTickets.map((ticket, index) => (
                             <tr key={index}>
                                 <td>{ticket.section}</td>
                                 <td>{ticket.row}</td>
-                                <td>${ticket.price.toFixed(2)}</td>
+                                <td>${ticket.estimated_price.toFixed(2)}</td>
                                 <td>
                                     <a href={ticket.url} target="_blank" rel="noopener noreferrer">
                                         {ticket.source}
