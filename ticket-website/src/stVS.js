@@ -2,8 +2,13 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-3-2-2025--sports-nba-basketball/production/5160149";
-const outputFile = "sun_vs_03_02.txt";
+const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-2-28-2025--sports-nba-basketball/production/5159904";
+const outputFile = "sun_vs_02_28.txt";
+const collectedTickets = new Set();
+const source = "Vivid Seats"; // Website source
+const date = "02-28-2025"; // Game date
+const homeTeam = "Suns";
+const awayTeam = "Pelicans";
 
 // Database file and connection
 const dbFile = "tickets.db";
@@ -46,11 +51,7 @@ db.run(`
         }
     });
 
-    const collectedTickets = new Set();
-    const source = "Vivid Seats"; // Website source
-    const date = "03-02-2025"; // Game date
-    const homeTeam = "Suns";
-    const awayTeam = "Timberwolves";
+
 
     // Clear old data from the database for this source, date, and home_team
     db.run(`DELETE FROM tickets WHERE source = ? AND date = ? AND home_team = ?`, [source, date, homeTeam], (err) => {

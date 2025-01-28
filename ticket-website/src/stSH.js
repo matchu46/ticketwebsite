@@ -4,11 +4,11 @@ const sqlite3 = require('sqlite3').verbose(); // For SQLite DB
 const fs = require('fs');                // For file operations
 
 // Configuration constants
-const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-3-2-2025/event/154770103/?quantity=2";
-const outputFile = "sun_sh_03_02.txt";
-const gameDate = "03-02-2025";
+const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-2-28-2025/event/154770100/?quantity=2";
+const outputFile = "sun_sh_02_28.txt";
+const gameDate = "02-28-2025";
 const homeTeam = "Suns";
-const awayTeam = "Timberwolves";
+const awayTeam = "Pelicans";
 const source = "StubHub"; // Assuming this is the source
 
 // Initialize the database and create the `tickets` table if it doesn't exist
@@ -77,7 +77,7 @@ db.run(`
                 }
 
                 // Construct the complete ticket URL with the listing ID
-                const ticketUrl = `https://www.stubhub.com/phoenix-suns-phoenix-tickets-3-2-2025/event/154770103/?quantity=2&listingId=${listingId}`;
+                const ticketUrl = `https://www.stubhub.com/phoenix-suns-phoenix-tickets-2-28-2025/event/154770100/?quantity=2&listingId=${listingId}`;
 
                 // Extract section information using the specific class selector
                 const section = await ticketElement.$eval('.sc-1t1b4cp-0.sc-1t1b4cp-6.eMtQWq.dQzlcE', el => {
