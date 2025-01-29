@@ -343,7 +343,7 @@ export default function Tickets() {
     
             {/* Game Boxes */}
             <div className="game-boxes">
-                {Object.keys(groupedTickets).map(date => {
+                {Object.keys(groupedTickets).sort((a, b) => new Date(a) - new Date(b)).map(date => {
                     // Assuming the first ticket for each date contains the home and away teams
                     const game = groupedTickets[date][0]; // Get the first ticket for the date
                     return (
