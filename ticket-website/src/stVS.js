@@ -2,13 +2,13 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-3-17-2025--sports-nba-basketball/production/5159937";
-const outputFile = "sun_vs_03_17.txt";
+const url = "https://www.vividseats.com/phoenix-suns-tickets-footprint-center-3-19-2025--sports-nba-basketball/production/5159941";
+const outputFile = "sun_vs_03_19.txt";
 const collectedTickets = new Set();
 const source = "Vivid Seats"; // Website source
-const date = "03-17-2025"; // Game date
+const date = "03-19-2025"; // Game date
 const homeTeam = "Suns";
-const awayTeam = "Raptors";
+const awayTeam = "Bulls";
 
 // Database file and connection
 const dbFile = "tickets.db";

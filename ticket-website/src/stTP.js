@@ -2,11 +2,11 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.tickpick.com/buy-phoenix-suns-vs-toronto-raptors-tickets-footprint-center-3-17-25-7pm/6634481/?qty=2-false";
-const outputFile = "sun_tp_03_17.txt";
-const gameDate = "03-17-2025";
+const url = "https://www.tickpick.com/buy-phoenix-suns-vs-chicago-bulls-tickets-footprint-center-3-19-25-7pm/6634483/?qty=2-false";
+const outputFile = "sun_tp_03_19.txt";
+const gameDate = "03-19-2025";
 const homeTeam = "Suns";
-const awayTeam = "Raptors";
+const awayTeam = "Bulls";
 const source = "TickPick";
 
 // Database file and connection
@@ -127,7 +127,7 @@ const initializeDb = async () => {
                     const priceText = await ticketElement.$eval('.sendE', el => el.innerText.trim());
                     console.log('Raw price text:', priceText);
                     
-                    const cleanPrice = priceText.match(/\$\d+/) ? priceText.match(/\$\d+/)[0] : priceText;
+                    const cleanPrice = priceText.match(/\$[\d,]+/) ? priceText.match(/\$[\d,]+/)[0] : priceText;
                     console.log('Cleaned price:', cleanPrice);
 
                     if (sectionNumber && rowNumber) {
@@ -136,7 +136,7 @@ const initializeDb = async () => {
                         
                         if (!collectedTickets.has(ticketKey)) {
                             collectedTickets.add(ticketKey);
-                            const price = parseFloat(cleanPrice.replace('$', ''));
+                            const price = parseFloat(cleanPrice.replace(/[$,]/g, '')); // Removes both $ and , 
                             const estimatedPrice = (price * 1).toFixed(2);
 
                             try {
