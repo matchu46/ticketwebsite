@@ -17,9 +17,9 @@
 03-14-2025-Suns-230-9-TickPick
 03-14-2025-Suns-224-9-TickPick
 03-14-2025-Suns-231-14-TickPick
+03-14-2025-Suns-205-9-TickPick
 03-14-2025-Suns-215-6-TickPick
 03-14-2025-Suns-213-7-TickPick
-03-14-2025-Suns-205-9-TickPick
 03-14-2025-Suns-215-5-TickPick
 03-14-2025-Suns-210-7-TickPick
 03-14-2025-Suns-221-5-TickPick
@@ -115,6 +115,7 @@
 03-14-2025-Suns-118-17-TickPick
 03-14-2025-Suns-228-10-TickPick
 03-14-2025-Suns-229-9-TickPick
+03-14-2025-Suns-103-16-TickPick
 03-14-2025-Suns-232-6-TickPick
 03-14-2025-Suns-223-5-TickPick
 03-14-2025-Suns-230-13-TickPick
@@ -123,11 +124,11 @@
 03-14-2025-Suns-220-14-TickPick
 03-14-2025-Suns-118-15-TickPick
 03-14-2025-Suns-207-3-TickPick
-03-14-2025-Suns-103-16-TickPick
 03-14-2025-Suns-204-12-TickPick
 03-14-2025-Suns-220-10-TickPick
 03-14-2025-Suns-104-11-TickPick
 03-14-2025-Suns-110-24-TickPick
+03-14-2025-Suns-102-19-TickPick
 03-14-2025-Suns-226-14-TickPick
 03-14-2025-Suns-222-8-TickPick
 03-14-2025-Suns-206-12-TickPick
@@ -143,7 +144,6 @@
 03-14-2025-Suns-122-12-TickPick
 03-14-2025-Suns-219-14-TickPick
 03-14-2025-Suns-202-6-TickPick
-03-14-2025-Suns-102-19-TickPick
 03-14-2025-Suns-219-12-TickPick
 03-14-2025-Suns-110-23-TickPick
 03-14-2025-Suns-110-26-TickPick
@@ -191,10 +191,10 @@
 03-14-2025-Suns-223-4-TickPick
 03-14-2025-Suns-201-7-TickPick
 03-14-2025-Suns-217-6-TickPick
+03-14-2025-Suns-102-18-TickPick
 03-14-2025-Suns-109-19-TickPick
 03-14-2025-Suns-206-8-TickPick
 03-14-2025-Suns-108-20-TickPick
-03-14-2025-Suns-105-28-TickPick
 03-14-2025-Suns-108-11-TickPick
 03-14-2025-Suns-203-14-TickPick
 03-14-2025-Suns-105-16-TickPick
@@ -204,8 +204,8 @@
 03-14-2025-Suns-114-22-TickPick
 03-14-2025-Suns-223-14-TickPick
 03-14-2025-Suns-124-27-TickPick
-03-14-2025-Suns-102-18-TickPick
 03-14-2025-Suns-219-10-TickPick
+03-14-2025-Suns-105-28-TickPick
 03-14-2025-Suns-114-17-TickPick
 03-14-2025-Suns-203-9-TickPick
 03-14-2025-Suns-201-13-TickPick

@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.tickpick.com/buy-phoenix-suns-vs-toronto-raptors-tickets-footprint-center-3-17-25-7pm/6634481/";
+const url = "https://www.tickpick.com/buy-phoenix-suns-vs-toronto-raptors-tickets-footprint-center-3-17-25-7pm/6634481/?qty=2-false";
 const outputFile = "sun_tp_03_17.txt";
 const gameDate = "03-17-2025";
 const homeTeam = "Suns";
@@ -137,7 +137,7 @@ const initializeDb = async () => {
                         if (!collectedTickets.has(ticketKey)) {
                             collectedTickets.add(ticketKey);
                             const price = parseFloat(cleanPrice.replace('$', ''));
-                            const estimatedPrice = (price * 1.4).toFixed(2);
+                            const estimatedPrice = (price * 1).toFixed(2);
 
                             try {
                                 await runAsync(
