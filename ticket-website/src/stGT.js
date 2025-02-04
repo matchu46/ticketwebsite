@@ -48,11 +48,26 @@ db.run(`
 
     // Helper function to parse price text
     const parsePrice = (priceText) => {
-        // Extract the numeric value from the price text
+        // Split the text by the dollar sign to handle multiple prices
+        const priceParts = priceText.split('$').filter(part => part.trim() !== '');
+
+        // If there are multiple prices, take the second one (discounted price)
+        if (priceParts.length > 1) {
+            const discountedPriceText = priceParts[1].trim();
+            // Extract the numeric value from the discounted price text
+            const priceMatch = discountedPriceText.match(/\d{1,3}(,\d{3})*(\.\d+)?|\d+(\.\d+)?/);
+            if (priceMatch) {
+                return parseFloat(priceMatch[0].replace(/,/g, ''));
+            }
+        }
+
+        // Fallback: If only one price is found, parse it as usual
         const priceMatch = priceText.match(/\$?(\d{1,3}(,\d{3})*(\.\d+)?|\d+(\.\d+)?)/);
         if (priceMatch) {
             return parseFloat(priceMatch[0].replace(/[$,]/g, ''));
         }
+
+        // Return null if no valid price is found
         return null;
     };
 
@@ -76,7 +91,7 @@ db.run(`
                 const section = sectionStr.trim();
                 const row = rowStr ? rowStr.replace('Row', '').trim() : null;
 
-                // Extract Price - get the cheaper price from the correct class
+                // Extract Price - get the entire price info container text
                 const priceElement = await ticketElement.$('.pages-Event-components-ListingCard-ListingCard-module__price-info');
                 const priceText = await priceElement.evaluate(el => el.textContent);
                 
