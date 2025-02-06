@@ -2,15 +2,15 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.tickpick.com/buy-phoenix-suns-vs-san-antonio-spurs-tickets-footprint-center-4-11-25-7pm/6634524/?qty=2-false";
-const outputFile = "sun_tp_04_11.txt";
-const gameDate = "04-11-2025";
-const homeTeam = "Suns";
-const awayTeam = "Spurs";
+const url = "https://www.tickpick.com/buy-arizona-diamondbacks-vs-chicago-cubs-home-opener-tickets-chase-field-3-27-25-7pm/6574824/?qty=2-false";
+const outputFile = "bsb_tp_03_27.txt";
+const gameDate = "03-27-2025";
+const homeTeam = "Dbacks";
+const awayTeam = "Cubs";
 const source = "TickPick";
 
 // Database file and connection
-const dbFile = "tickets.db";
+const dbFile = "bsbtickets.db";
 const db = new sqlite3.Database(dbFile);
 
 // Add debug query function

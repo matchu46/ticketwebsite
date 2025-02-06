@@ -2,17 +2,17 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://gametime.co/nba-basketball/warriors-at-suns-tickets/4-8-2025-phoenix-az-footprint-center/events/66be5ef0d2310128074c5017";
-const outputFile = "sun_gt_04_11.txt";
+const url = "https://gametime.co/mlb-baseball/cubs-at-diamondbacks-opening-day-tickets/3-27-2025-phoenix-az-chase-field/events/66a15ebd81e1bdde81adde3e?queryId=81115b61090389614900ab585115826b&resultPosition=1&searchIndex=performers";
+const outputFile = "bsb_gt_03_27.txt";
 const collectedTickets = new Set();
 const source = "Gametime";
 const baseUrl = "https://gametime.co";
-const date = "04-11-2025";
-const homeTeam = "Suns";
-const awayTeam = "Spurs";
+const date = "03-27-2025";
+const homeTeam = "Dbacks";
+const awayTeam = "Cubs";
 
 // Database file and connection
-const dbFile = "tickets.db";
+const dbFile = "bsbtickets.db";
 const db = new sqlite3.Database(dbFile);
 
 // Initialize the database
