@@ -7,7 +7,7 @@ video {
 }
 
 .hero-container {
-    background: url('/public/images/suns_event.webp') center center/cover no-repeat;
+    background: url('/public/images/phoenix-cityscape.jpg') center center/cover no-repeat;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -19,16 +19,18 @@ video {
 }
 
 .hero-container > h1 {
-    color: #fff;
+    color:rgb(71, 19, 119);
     font-size: 100px;
-    margin-top: -100px;
+    margin-top: -260px;
+    text-shadow: 2px 2px 4px rgba(163, 75, 204, 0.5);
 }
 
 .hero-container > p {
     margin-top: 8px;
-    color: #fff;
+    color:rgb(71, 19, 119);
     font-size: 32px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(163, 75, 204, 0.5);
 }
 
 .hero-btns {
