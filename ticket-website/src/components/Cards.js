@@ -30,9 +30,9 @@ function Cards() {
             path='/tickets'
             />
             <CardItem 
-            src="images/Arizona-Rattlers.jpg"
-            text="Experience Arena Football at its best!"
-            label='Arena Football'
+            src="images/suns_event.webp"
+            text="Head to Footprint Center!"
+            label='Basketball'
             path='/tickets'
             />
             <CardItem 
