@@ -11,12 +11,12 @@ const homeTeam = "Dbacks";
 const awayTeam = "Cubs";
 const source = "StubHub"; // Assuming this is the source
 
-// Initialize the database and create the `tickets` table if it doesn't exist
-const dbFile = "bsbtickets.db";
+// Initialize the database and create the `ticketsbsb` table if it doesn't exist
+const dbFile = "tickets.db";
 const db = new sqlite3.Database(dbFile);
 
 db.run(`
-    CREATE TABLE IF NOT EXISTS tickets (
+    CREATE TABLE IF NOT EXISTS ticketsbsb (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         date TEXT NOT NULL,
         home_team TEXT NOT NULL,
@@ -128,9 +128,9 @@ db.run(`
                         collectedTickets.add(ticketInfo);
                         console.log(`Valid Ticket - ${ticketInfo}`);
 
-                        // Insert ticket into database
+                        // Insert ticket into database (now using `ticketsbsb`)
                         db.run(
-                            `INSERT OR REPLACE INTO tickets (date, home_team, away_team, section, row, price, estimated_price, url, source)
+                            `INSERT OR REPLACE INTO ticketsbsb (date, home_team, away_team, section, row, price, estimated_price, url, source)
                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                             [gameDate, homeTeam, awayTeam, section, row, price, estimatedPrice, ticketUrl, source],
                             function (err) {

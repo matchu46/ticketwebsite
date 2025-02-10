@@ -10,7 +10,7 @@ const awayTeam = "Cubs";
 const source = "TickPick";
 
 // Database file and connection
-const dbFile = "bsbtickets.db";
+const dbFile = "tickets.db"; 
 const db = new sqlite3.Database(dbFile);
 
 // Add debug query function
@@ -44,7 +44,7 @@ const runAsync = (query, params) => {
 const checkDatabase = () => {
     return new Promise((resolve, reject) => {
         db.all(
-            `SELECT * FROM tickets WHERE source = ? AND date = ? AND home_team = ?`,
+            `SELECT * FROM ticketsbsb WHERE source = ? AND date = ? AND home_team = ?`,
             [source, gameDate, homeTeam],
             (err, rows) => {
                 if (err) {
@@ -63,7 +63,7 @@ const checkDatabase = () => {
 const initializeDb = async () => {
     try {
         await runAsync(`
-            CREATE TABLE IF NOT EXISTS tickets (
+            CREATE TABLE IF NOT EXISTS ticketsbsb (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 date TEXT NOT NULL,
                 home_team TEXT NOT NULL,
@@ -80,11 +80,11 @@ const initializeDb = async () => {
         `);
         
         const deleteResult = await runAsync(
-            `DELETE FROM tickets WHERE source = ? AND date = ? AND home_team = ?`,
+            `DELETE FROM ticketsbsb WHERE source = ? AND date = ? AND home_team = ?`,
             [source, gameDate, homeTeam]
         );
         console.log(`Cleared ${deleteResult.changes} old records`);
-        
+
         // Check database after initialization
         await checkDatabase();
     } catch (err) {
@@ -141,7 +141,7 @@ const initializeDb = async () => {
 
                             try {
                                 await runAsync(
-                                    `INSERT OR REPLACE INTO tickets (date, home_team, away_team, section, row, price, estimated_price, url, source)
+                                    `INSERT OR REPLACE INTO ticketsbsb (date, home_team, away_team, section, row, price, estimated_price, url, source)
                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                                     [gameDate, homeTeam, awayTeam, sectionNumber, rowNumber, price, estimatedPrice, url, source]
                                 );
