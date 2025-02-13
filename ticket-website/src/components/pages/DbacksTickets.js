@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './TicketDetails.css';
+import './DbacksTickets.css';
 
-export default function TicketDetails() {
-    const { date } = useParams(); // Get the game date from the URL
+export default function DbacksTickets() {
+    const { date } = useParams();
+    console.log('Date from URL:', date);
     const [tickets, setTickets] = useState([]);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(1000);
@@ -11,7 +12,7 @@ export default function TicketDetails() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5000/tickets')
+        fetch('http://localhost:5000/ticketsbsb')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -40,11 +41,11 @@ export default function TicketDetails() {
 
     return (
         <div className="ticket-details-container">
-            <button className="back-button" onClick={() => navigate('/suns')}>
+            <button className="back-button" onClick={() => navigate('/dbacks')}>
                 Back to Games
             </button>
             <h1>Tickets for {date}</h1>
-            <img src="/images/footprint_seating_chart.png" alt="Seating Chart" className="seating-chart"/>
+            <img src="/images/chasefield-seating-chart.webp" alt="Seating Chart" className="seating-chart"/>
 
             {/* Filters */}
             <div className="filters">

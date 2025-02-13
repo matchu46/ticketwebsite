@@ -1,0 +1,176 @@
+/* Basic container for the tickets section */
+.tickets-container {
+    padding: 0px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Title for the tickets section */
+  .tickets-title {
+    max-width: 1000px;
+    padding: 20px;
+    font-size: 1.8rem;
+    /*margin-bottom: 20px;*/
+    color: #333;
+    margin: 20px auto;
+  }
+  
+  /* Styling for the table displaying the ticket information */
+  .tickets-table {
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    /*margin-top: 20px;*/
+    margin: 20px auto;
+  }
+  
+  /* Table headers */
+  .tickets-table th {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Table rows */
+  .tickets-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Hover effect for rows */
+  .tickets-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Adjusting font size for readability */
+  .tickets-table, .tickets-title, .tickets-table td, .tickets-table th {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+  }
+  
+  /* Sort controls styling */
+  .sort-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sort-controls label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .sort-controls select {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  /* Filters styling */
+  .filters {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+  
+  .price-range, .sort-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
+  }
+  
+  .price-range label, .sort-controls label {
+    font-weight: bold;
+  }
+  
+  input[type="number"] {
+    padding: 5px;
+    font-size: 14px;
+    width: 80px;
+  }
+  
+  select {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .date-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.date-button {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+
+.date-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.date-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tickets-table th,
+.tickets-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.game-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.game-box {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 80%;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.game-box:hover {
+  transform: scale(1.05);
+  border-color: #007bff;
+}
+
+.game-box.selected {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+.hero-dbacks {
+    height: 70vh;
+    width: 100%;
+}
+
+  

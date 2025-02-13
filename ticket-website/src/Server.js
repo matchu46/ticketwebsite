@@ -41,6 +41,35 @@ app.get('/tickets', (req, res) => {
     });
 });
 
+app.get('/ticketsbsb', (req, res) => {
+    const { section, min_price, max_price } = req.query;
+    let query = 'SELECT * FROM ticketsbsb WHERE 1=1';
+    const params = [];
+
+    if (section) {
+        query += ' AND section = ?';
+        params.push(section);
+    }
+
+    if (min_price) {
+        query += ' AND price >= ?';
+        params.push(min_price);
+    }
+
+    if (max_price) {
+        query += ' AND price <= ?';
+        params.push(max_price);
+    }
+
+    db.all(query, params, (err, rows) => {
+        if (err) {
+            console.error('Error querying database: ', err);
+            return res.status(500).send('Database error.');
+        }
+        res.json(rows);
+    });
+});
+
 // Update ticket information
 app.put('/tickets/:id', express.json(), (req, res) => {
     const { id } = req.params;

@@ -28,7 +28,7 @@ export default function Tickets() {
     }, []);
 
     const handleGameBoxClick = (date) => {
-        navigate(`/tickets/${date}`); // Navigate to the Ticket Details page
+        navigate(`/suns/${date}`); // Navigate to the Ticket Details page
     };
 
     return (
