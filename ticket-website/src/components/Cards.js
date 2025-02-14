@@ -13,13 +13,13 @@ function Cards() {
             src="images/phoenix_suns_upper.jpg"
             text="Feel the heat, catch the Suns live!"
             label='Basketball'
-            path='/tickets'
+            path='/suns'
             />
             <CardItem 
             src="images/chasefield-2021-4.jpg"
             text="Step up to the plate!"
             label='Baseball'
-            path='/tickets'
+            path='/dbacks'
             />
           </ul>
           <ul class="cards__items">
@@ -33,13 +33,13 @@ function Cards() {
             src="images/suns_event.webp"
             text="Head to Footprint Center!"
             label='Basketball'
-            path='/tickets'
+            path='/suns'
             />
             <CardItem 
             src="images/booker-shot.jpg"
             text="Book your tickets today!"
             label='Basketball'
-            path='/tickets'
+            path='/suns'
             />
           </ul>
         </div>
