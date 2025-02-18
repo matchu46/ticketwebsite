@@ -21,3 +21,9 @@
     width: 100%;
     height: auto;
   }
+
+.hero-btns {
+    margin-top: 5px;
+    margin-left: -1px;
+    padding: 10px 20px;
+}

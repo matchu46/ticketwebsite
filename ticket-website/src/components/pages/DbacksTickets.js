@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './DbacksTickets.css';
+import { Button } from "../Button";
 
 export default function DbacksTickets() {
     const { date } = useParams();
@@ -9,7 +10,7 @@ export default function DbacksTickets() {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(1000);
     const [sortOption, setSortOption] = useState('estimated_price');
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:5000/ticketsbsb')
@@ -41,11 +42,18 @@ export default function DbacksTickets() {
 
     return (
         <div className="ticket-details-container">
-            <button className="back-button" onClick={() => navigate('/dbacks')}>
+            <div className="hero-btns">
+                <Button 
+                className='btns' 
+                buttonStyle='btn--outline'
+                buttonSize='btn--large'
+                to='/dbacks'
+                >
                 Back to Games
-            </button>
+                </Button>
+            </div> 
             <h1>Tickets for {date}</h1>
-            <img src="/images/chasefield-seating-chart.webp" alt="Seating Chart" className="seating-chart"/>
+            <img src="/images/chasefield-seatingchart.jpg" alt="Seating Chart" className="seating-chart"/>
 
             {/* Filters */}
             <div className="filters">

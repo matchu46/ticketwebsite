@@ -11,7 +11,8 @@ export const Button = ({
     type, 
     onClick, 
     buttonStyle, 
-    buttonSize
+    buttonSize,
+    to = '#'
 }) => {
     const checkButtonStyle = STYLES.includes(buttonStyle) 
     ? buttonStyle 
@@ -22,7 +23,7 @@ export const Button = ({
     : SIZES[0];
 
     return (
-      <Link to='/sign-up' className='btn-mobile'>
+      <Link to={to} className='btn-mobile'>
         <button
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
         onClick={onClick}
