@@ -21,3 +21,90 @@
     width: 100%;
     height: auto;
   }
+
+  /* Controls container for sorting & filtering */
+.controls-container {
+    display: flex;
+    justify-content: space-evenly; /* Even spacing */
+    align-items: center;
+    flex-wrap: wrap; /* Wrap for smaller screens */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Price range & sort controls */
+.price-range, .sort-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Input and select styling */
+.price-range input, 
+.sort-controls select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Labels styling */
+.price-range label, .sort-controls label {
+    font-weight: bold;
+}
+/* Basic container for the tickets section */
+.tickets-container {
+    padding: 0px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Title for the tickets section */
+  .tickets-title {
+    max-width: 1000px;
+    padding: 20px;
+    font-size: 1.8rem;
+    /*margin-bottom: 20px;*/
+    color: #333;
+    margin: 20px auto;
+  }
+  
+  /* Styling for the table displaying the ticket information */
+  .tickets-table {
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    /*margin-top: 20px;*/
+    margin: 20px auto;
+  }
+  
+  /* Table headers */
+  .tickets-table th {
+    background-color: #7f9665;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Table rows */
+  .tickets-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Hover effect for rows */
+  .tickets-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Adjusting font size for readability */
+  .tickets-table, .tickets-title, .tickets-table td, .tickets-table th {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+  }

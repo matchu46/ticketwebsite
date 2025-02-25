@@ -35,11 +35,12 @@
   }
   
   .sign-up {
-    background-image: url('/public/images/chasefield-2021-4.jpg');
+    background-image: url('/public/images/statefarm-stadium.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   /* App.css or a specific Tickets.css file */

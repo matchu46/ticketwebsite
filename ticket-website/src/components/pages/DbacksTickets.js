@@ -11,6 +11,7 @@ export default function DbacksTickets() {
     const [maxPrice, setMaxPrice] = useState(1000);
     const [sortOption, setSortOption] = useState('estimated_price');
     //const navigate = useNavigate();
+    const [selectedSource, setSelectedSource] = useState("all");
 
     useEffect(() => {
         fetch('http://localhost:5000/ticketsbsb')
@@ -27,9 +28,9 @@ export default function DbacksTickets() {
             .catch((error) => console.error('Error fetching ticket data:', error));
     }, [date]);
 
-    const filteredTickets = tickets.filter(ticket => 
-        ticket.estimated_price >= minPrice && ticket.estimated_price <= maxPrice
-    );
+    const filteredTickets = tickets
+        .filter(ticket => ticket.estimated_price >= minPrice && ticket.estimated_price <= maxPrice)
+        .filter(ticket => selectedSource === "all" || ticket.source === selectedSource);
 
     const sortedTickets = [...filteredTickets].sort((a, b) => {
         if (sortOption === 'estimated_price') {
@@ -44,20 +45,22 @@ export default function DbacksTickets() {
         <div className="ticket-details-container">
             <div className="hero-btns">
                 <Button 
-                className='btns' 
-                buttonStyle='btn--outline'
-                buttonSize='btn--large'
-                to='/dbacks'
+                    className='btns' 
+                    buttonStyle='btn--outline'
+                    buttonSize='btn--large'
+                    to='/dbacks'
                 >
-                Back to Games
+                    Back to Games
                 </Button>
             </div> 
+    
             <h1>Tickets for {date}</h1>
             <img src="/images/chasefield-seatingchart.jpg" alt="Seating Chart" className="seating-chart"/>
-
-            {/* Filters */}
-            <div className="filters">
-                <div>
+    
+            {/* Controls Container for Sorting and Filtering */}
+            <div className="controls-container">
+                {/* Price Range Filters */}
+                <div className="price-range">
                     <label>
                         Min Price:
                         <input
@@ -75,7 +78,9 @@ export default function DbacksTickets() {
                         />
                     </label>
                 </div>
-                <div>
+    
+                {/* Sorting Options */}
+                <div className="sort-controls">
                     <label>
                         Sort by:
                         <select
@@ -87,8 +92,23 @@ export default function DbacksTickets() {
                         </select>
                     </label>
                 </div>
-            </div>
 
+                <div className="source-filter">
+                    <label>
+                        Ticket Source:
+                        <select 
+                            value={selectedSource} 
+                            onChange={(e) => setSelectedSource(e.target.value)}
+                        >
+                            <option value="all">All Sources</option>
+                            <option value="Gametime">GameTime</option>
+                            <option value="StubHub">StubHub</option>
+                            <option value="TickPick">TickPick</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+    
             {/* Tickets Table */}
             {filteredTickets.length === 0 ? (
                 <p>No tickets available in this price range.</p>
@@ -120,4 +140,5 @@ export default function DbacksTickets() {
             )}
         </div>
     );
+    
 }

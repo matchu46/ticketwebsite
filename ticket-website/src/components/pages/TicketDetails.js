@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './TicketDetails.css';
+import { Button } from '../Button';
 
 export default function TicketDetails() {
     const { date } = useParams(); // Get the game date from the URL
@@ -40,15 +41,24 @@ export default function TicketDetails() {
 
     return (
         <div className="ticket-details-container">
-            <button className="back-button" onClick={() => navigate('/suns')}>
-                Back to Games
-            </button>
+            <div className="hero-btns">
+                <Button 
+                    className='btns' 
+                    buttonStyle='btn--outline'
+                    buttonSize='btn--large'
+                    to='/suns'
+                >
+                    Back to Games
+                </Button>
+            </div> 
+    
             <h1>Tickets for {date}</h1>
             <img src="/images/footprint_seating_chart.png" alt="Seating Chart" className="seating-chart"/>
-
-            {/* Filters */}
-            <div className="filters">
-                <div>
+    
+            {/* Controls Container for Sorting and Filtering */}
+            <div className="controls-container">
+                {/* Price Range Filters */}
+                <div className="price-range">
                     <label>
                         Min Price:
                         <input
@@ -66,7 +76,9 @@ export default function TicketDetails() {
                         />
                     </label>
                 </div>
-                <div>
+    
+                {/* Sorting Options */}
+                <div className="sort-controls">
                     <label>
                         Sort by:
                         <select
@@ -79,7 +91,7 @@ export default function TicketDetails() {
                     </label>
                 </div>
             </div>
-
+    
             {/* Tickets Table */}
             {filteredTickets.length === 0 ? (
                 <p>No tickets available in this price range.</p>
