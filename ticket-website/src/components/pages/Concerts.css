@@ -1,0 +1,32 @@
+.game-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .game-box {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 80%;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  
+  .game-box:hover {
+    transform: scale(1.05);
+    border-color: #7f9665;
+  }
+  
+  .game-box.selected {
+    border-color: #7f9665;
+    background-color: #f0f8ff;
+  }
+  
+  .hero-concerts {
+      height: 70vh;
+      width: 100%;
+  } 

@@ -54,6 +54,11 @@ function Navbar() {
                Cardinals
               </Link>
             </li>  
+            <li>
+              <Link to='/concerts' className='nav-links' onClick={closeMobileMenu}>
+               Concerts
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

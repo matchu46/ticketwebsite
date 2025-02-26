@@ -8,6 +8,8 @@ import Tickets from './components/pages/Tickets';
 import SignUp from './components/pages/SignUp';
 import TicketDetails from './components/pages/TicketDetails';
 import DbacksTickets from './components/pages/DbacksTickets';
+import Concerts from './components/pages/Concerts';
+import ConcertsTickets from './components/pages/ConcertsTickets';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path='/suns' element={<Tickets/>} />
           <Route path='/suns/:date' element={<TicketDetails/>} />
           <Route path='/sign-up' element={<SignUp/>} />
+          <Route path='/concerts' element={<Concerts/>} />
+          <Route path='/concerts/:date' element={<ConcertsTickets/>} />
         </Routes>
       </Router>
     </>
