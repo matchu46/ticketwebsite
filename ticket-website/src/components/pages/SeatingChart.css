@@ -1,0 +1,15 @@
+.seating-chart-svg {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: auto;
+}
+
+.seat-section {
+    cursor: pointer;
+    transition: fill 0.2s;
+}
+
+.seat-section.hovered rect {
+    fill: orange !important; /* Change color on hover */
+}

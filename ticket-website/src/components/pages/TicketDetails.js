@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './TicketDetails.css';
+import SeatingChart from './SeatingChart';
 import { Button } from '../Button';
 
 export default function TicketDetails() {
@@ -10,6 +11,8 @@ export default function TicketDetails() {
     const [maxPrice, setMaxPrice] = useState(1000);
     const [sortOption, setSortOption] = useState('estimated_price');
     const navigate = useNavigate();
+    const [selectedSource, setSelectedSource] = useState("all");
+    const [selectedSection, setSelectedSection] = useState(null);
 
     useEffect(() => {
         fetch('http://localhost:5000/tickets')
@@ -26,9 +29,10 @@ export default function TicketDetails() {
             .catch((error) => console.error('Error fetching ticket data:', error));
     }, [date]);
 
-    const filteredTickets = tickets.filter(ticket => 
-        ticket.estimated_price >= minPrice && ticket.estimated_price <= maxPrice
-    );
+    const filteredTickets = tickets
+        .filter(ticket => ticket.estimated_price >= minPrice && ticket.estimated_price <= maxPrice)
+        .filter(ticket => selectedSource === "all" || ticket.source === selectedSource)
+        .filter(ticket => !selectedSection || ticket.section === selectedSection);
 
     const sortedTickets = [...filteredTickets].sort((a, b) => {
         if (sortOption === 'estimated_price') {
@@ -53,7 +57,7 @@ export default function TicketDetails() {
             </div> 
     
             <h1>Tickets for {date}</h1>
-            <img src="/images/footprint_seating_chart.png" alt="Seating Chart" className="seating-chart"/>
+            <SeatingChart onSelectSection={setSelectedSection} />
     
             {/* Controls Container for Sorting and Filtering */}
             <div className="controls-container">
@@ -87,6 +91,16 @@ export default function TicketDetails() {
                         >
                             <option value="estimated_price">Cheapest Price</option>
                             <option value="source">Source (Website)</option>
+                        </select>
+                    </label>
+                </div>
+                <div className="source-filter">
+                    <label>Ticket Source:
+                        <select value="{selectedSource} onChange={(e) => setSelectedSource(e.target.value)}">
+                            <option value="all">All Sources</option>
+                            <option value="Gametime">Gametime</option>
+                            <option value="StubHub">StubHub</option>
+                            <option value="TickPick">TickPick</option>
                         </select>
                     </label>
                 </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import SeatingChart from './SeatingChart';
 import './DbacksTickets.css';
 import { Button } from "../Button";
 
@@ -12,6 +13,7 @@ export default function DbacksTickets() {
     const [sortOption, setSortOption] = useState('estimated_price');
     //const navigate = useNavigate();
     const [selectedSource, setSelectedSource] = useState("all");
+    const [selectedSection, setSelectedSection] = useState(null);
 
     useEffect(() => {
         fetch('http://localhost:5000/ticketsbsb')
@@ -30,7 +32,8 @@ export default function DbacksTickets() {
 
     const filteredTickets = tickets
         .filter(ticket => ticket.estimated_price >= minPrice && ticket.estimated_price <= maxPrice)
-        .filter(ticket => selectedSource === "all" || ticket.source === selectedSource);
+        .filter(ticket => selectedSource === "all" || ticket.source === selectedSource)
+        .filter(ticket => !selectedSection || ticket.section === selectedSection);
 
     const sortedTickets = [...filteredTickets].sort((a, b) => {
         if (sortOption === 'estimated_price') {
@@ -55,7 +58,7 @@ export default function DbacksTickets() {
             </div> 
     
             <h1>Tickets for {date}</h1>
-            <img src="/images/chasefield-seatingchart.jpg" alt="Seating Chart" className="seating-chart"/>
+            <SeatingChart onSelectSection={setSelectedSection} />
     
             {/* Controls Container for Sorting and Filtering */}
             <div className="controls-container">
