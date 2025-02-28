@@ -33,7 +33,7 @@
      inkscape:window-x="-6"
      inkscape:window-y="-6"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g1" />
+     inkscape:current-layer="layer1" />
   <g
      inkscape:groupmode="layer"
      inkscape:label="Image"
@@ -50,12 +50,52 @@
        inkscape:label="SectionLayer">
       <path
          style="fill:transparent; cursor:pointer"
-         d="m 45.176471,338.82353 h 90.352939 l 1.18886,83.21982 -90.352945,1.18885 z"
-         id="211" />
+         d="m 532.60681,14.266254 74.89784,1.188854 -1.18886,87.975232 -68.95356,1.18886 z"
+         id="220"
+         inkscape:label="220" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 448.19814,15.455108 h 85.59753 v 87.975232 l -82.03096,1.18886 z"
+         id="219"
+         inkscape:label="219" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="M 374.48917,15.455108 449.387,16.643963 V 105.80805 H 374.48917 Z"
+         id="218"
+         inkscape:label="218" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 290.0805,14.266254 85.59752,1.188854 2.37771,89.164092 -83.21982,-1.18886 z"
+         id="217"
+         inkscape:label="217" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 210.42725,47.55418 32.09907,-29.721363 h 51.12074 l -2.37771,84.408673 v 3.56656 l -11.88854,-1.18885 -7.13313,7.13312 z"
+         id="216"
+         inkscape:label="216" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 143.85139,109.37461 64.19815,-59.442721 63.00928,61.820431 -61.82043,61.82044 z"
+         id="215"
+         inkscape:label="215" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 77.275542,173.57276 65.386998,-61.82044 63.00929,64.19815 -65.387,64.19814 z"
+         id="214"
+         inkscape:label="214" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 45.176471,254.41486 1.188854,-49.93189 30.910217,-28.5325 63.009288,61.82043 -5.94427,9.51083 3.56656,11.88855 z"
+         id="213"
+         inkscape:label="213" />
       <path
          style="fill:transparent; cursor:pointer"
          d="m 46.365325,257.98142 h 90.352945 v 82.03096 H 46.365325 Z"
          id="212" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 45.176471,338.82353 h 90.352939 l 1.18886,83.21982 -90.352945,1.18885 z"
+         id="211" />
       <path
          style="fill:transparent; cursor:pointer"
          d="m 45.176471,420.85449 h 92.730649 v 86.78638 l -91.541795,1.18885 z"
@@ -67,6 +107,46 @@
          id="209"
          inkscape:label="209"
          sodipodi:nodetypes="cccccc" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 131.96285,523.09598 70.14241,66.57585 -58.25387,61.82043 -70.142411,-66.57585 z"
+         id="208"
+         inkscape:label="208" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 203.29412,587.29412 c 0,0 73.70898,66.57585 72.52012,66.57585 -1.18885,0 -65.38699,66.57585 -65.38699,66.57585 l -71.33127,-67.7647 z"
+         id="207"
+         inkscape:label="207" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 211.6161,714.50155 28.53251,30.91022 57.06501,2.37771 2.37771,-89.16409 -21.39938,-1.18885 -2.37771,-3.56657 z"
+         id="206"
+         inkscape:label="206" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 293.64706,656.24768 92.73065,1.18886 1.18886,89.16408 h -91.5418 z"
+         id="205"
+         inkscape:label="205" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 385.18886,657.43654 74.89783,1.18885 1.18885,89.16409 h -76.08668 z"
+         id="204"
+         inkscape:label="204" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 457.70898,657.43654 h 85.59752 v 89.16408 l -82.03096,-1.18885 z"
+         id="203"
+         inkscape:label="203" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 542.11765,656.24768 h 68.95356 v 91.5418 h -66.57585 z"
+         id="202"
+         inkscape:label="202" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 611.07121,657.43654 h 83.21981 l -1.18885,91.54179 h -82.03096 z"
+         id="201"
+         inkscape:label="201" />
     </g>
   </g>
 </svg>

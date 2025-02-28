@@ -1,56 +1,10 @@
-// import React, { useState } from 'react';
-// import './SeatingChart.css';
-
-// const SeatingChart = ({ onSelectSection }) => {
-//     const [hoveredSection, setHoveredSection] = useState(null);
-
-//     const handleMouseEnter = (sectionId) => {
-//         setHoveredSection(sectionId);
-//     };
-
-//     const handleMouseLeave = () => {
-//         setHoveredSection(null);
-//     };
-
-//     const handleClick = (sectionId) => {
-//         onSelectSection(sectionId);
-//     };
-
-//     return (
-//         <svg
-//             viewBox="0 0 800 600"
-//             className="seating-chart-svg"
-//         >
-//             {/* Example sections (Replace with actual SVG paths and IDs) */}
-//             <g
-//                 id="210"
-//                 className={`seat-section ${hoveredSection === "210" ? "hovered" : ""}`}
-//                 onMouseEnter={() => handleMouseEnter("210")}
-//                 onMouseLeave={handleMouseLeave}
-//                 onClick={() => handleClick("210")}
-//             >
-//                 <rect x="100" y="100" width="100" height="50" fill="blue" />
-//             </g>
-//             <g
-//                 id="211"
-//                 className={`seat-section ${hoveredSection === "211" ? "hovered" : ""}`}
-//                 onMouseEnter={() => handleMouseEnter("211")}
-//                 onMouseLeave={handleMouseLeave}
-//                 onClick={() => handleClick("211")}
-//             >
-//                 <rect x="250" y="100" width="100" height="50" fill="green" />
-//             </g>
-//         </svg>
-//     );
-// };
-
-// export default SeatingChart;
 import React, { useState, useEffect, useRef } from 'react';
 import './SeatingChart.css';
 
 const SeatingChart = ({ onSelectSection }) => {
   const [svgContent, setSvgContent] = useState(null);
   const [hoveredSection, setHoveredSection] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null); // Track selected section
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -65,19 +19,27 @@ const SeatingChart = ({ onSelectSection }) => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Wait for SVG to render in the DOM
     setTimeout(() => {
       const paths = container.querySelectorAll('path');
 
       paths.forEach((path) => {
-        path.style.cursor = 'pointer'; // Make it clear that sections are clickable
+        path.style.cursor = 'pointer'; // Indicate interactivity
 
         path.addEventListener('mouseenter', (e) => setHoveredSection(e.target.id));
         path.addEventListener('mouseleave', () => setHoveredSection(null));
+
         path.addEventListener('click', (e) => {
           const sectionId = e.target.id;
           console.log(`Clicked on section: ${sectionId}`);
-          if (onSelectSection) onSelectSection(sectionId);
+
+          // Toggle selection logic
+          if (selectedSection === sectionId) {
+            setSelectedSection(null); // Deselect
+            onSelectSection(null); // Show all tickets
+          } else {
+            setSelectedSection(sectionId); // Select new section
+            onSelectSection(sectionId); // Show filtered tickets
+          }
         });
       });
 
@@ -88,8 +50,8 @@ const SeatingChart = ({ onSelectSection }) => {
           path.removeEventListener('click', (e) => onSelectSection(e.target.id));
         });
       };
-    }, 500); // Delay to ensure the SVG is fully loaded
-  }, [svgContent, onSelectSection]);
+    }, 500); // Delay to ensure SVG is fully loaded
+  }, [svgContent, selectedSection, onSelectSection]);
 
   return (
     <div className="seating-chart-container">
@@ -102,12 +64,9 @@ const SeatingChart = ({ onSelectSection }) => {
       ) : (
         <p>Loading seating chart...</p>
       )}
-      {/* {hoveredSection && <div className="hover-indicator">Hovering: {hoveredSection}</div>} */}
+      {/* {selectedSection && <h2>Showing tickets for Section {selectedSection}</h2>} */}
     </div>
   );
 };
 
 export default SeatingChart;
-
-
-

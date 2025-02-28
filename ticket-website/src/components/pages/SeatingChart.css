@@ -1,15 +1,21 @@
-.seating-chart-svg {
+.seating-chart-container {
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    height: 100vh; /* Full viewport height */
     width: 100%;
-    max-width: 600px;
-    display: block;
-    margin: auto;
-}
+  }
+  
+  .seating-chart-svg {
+    max-width: 90%; /* Prevents SVG from being too large */
+    max-height: 80vh; /* Keeps it within view */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }  
 
 .seat-section {
     cursor: pointer;
     transition: fill 0.2s;
 }
 
-.seat-section.hovered rect {
-    fill: orange !important; /* Change color on hover */
-}

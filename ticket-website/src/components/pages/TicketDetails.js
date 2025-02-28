@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './TicketDetails.css';
 import SeatingChart from './SeatingChart';
 import { Button } from '../Button';
@@ -8,9 +8,8 @@ export default function TicketDetails() {
     const { date } = useParams(); // Get the game date from the URL
     const [tickets, setTickets] = useState([]);
     const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(1000);
+    const [maxPrice, setMaxPrice] = useState(10000);
     const [sortOption, setSortOption] = useState('estimated_price');
-    const navigate = useNavigate();
     const [selectedSource, setSelectedSource] = useState("all");
     const [selectedSection, setSelectedSection] = useState(null);
 
