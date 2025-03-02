@@ -2,14 +2,14 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://gametime.co/concert/katy-perry-tickets/7-12-2025-phoenix-az-footprint-center/events/6797a2de3764023edb5dbdec?queryId=dca40a891c51e4e7c3c90705859e4d6d&resultPosition=1&searchIndex=events&searchSessionId=5df2ad21-0483-4372-b576-28fddab97388";
-const outputFile = "con_gt_07_12.txt";
+const url = "https://gametime.co/concert/wu-tang-clan-tickets/6-18-2025-phoenix-az-footprint-center/events/67bcfa2e6b7b34f72aff37f2?q=suns&d=eyJzZWFyY2hTZXNzaW9uSUQiOiI5OGMyMjdkYS03ZGJlLTRjNzYtOTYxZi1iY2JkOWE3ZDQyYzgiLCJrZXlzdHJva2VTZXF1ZW5jZSI6MTAsImFwaVNlcXVlbmNlIjoyfQ%3D%3D&queryId=e48fdec493d133683373d255c4ed1a00&resultPosition=1&searchIndex=events&searchSessionId=ffb4ede9-0ecf-40cb-9800-983656ccfa79";
+const outputFile = "con_gt_06_18.txt";
 const collectedTickets = new Set();
 const source = "Gametime";
 const baseUrl = "https://gametime.co";
-const date = "07-12-2025";
+const date = "06-18-2025";
 const homeTeam = "PHX Arena";
-const awayTeam = "Katy Perry";
+const awayTeam = "Wu Tang Clan";
 
 // Database file and connection
 const dbFile = "tickets.db";
