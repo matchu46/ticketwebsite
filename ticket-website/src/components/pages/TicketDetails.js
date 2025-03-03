@@ -95,11 +95,12 @@ export default function TicketDetails() {
                 </div>
                 <div className="source-filter">
                     <label>Ticket Source:
-                        <select value="{selectedSource} onChange={(e) => setSelectedSource(e.target.value)}">
+                        <select value={selectedSource} onChange={(e) => setSelectedSource(e.target.value)}>
                             <option value="all">All Sources</option>
                             <option value="Gametime">Gametime</option>
                             <option value="StubHub">StubHub</option>
                             <option value="TickPick">TickPick</option>
+                            <option value="Vivid Seats">Vivid Seats</option>
                         </select>
                     </label>
                 </div>
@@ -107,7 +108,7 @@ export default function TicketDetails() {
     
             {/* Tickets Table */}
             {filteredTickets.length === 0 ? (
-                <p>No tickets available in this price range.</p>
+                <p className="no-tickets">No tickets available in this price range.</p>
             ) : (
                 <table className="tickets-table">
                     <thead>
