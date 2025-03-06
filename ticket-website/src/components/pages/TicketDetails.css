@@ -102,3 +102,21 @@
     font-family: 'Arial', sans-serif;
     font-size: 1rem;
   }
+
+  .tickets-table th {
+    cursor: pointer;
+    padding: 10px;
+    background: #f4f4f4;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    user-select: none;
+}
+
+.tickets-table th:hover {
+    background: #788d5f;
+}
+
+.tickets-table th::after {
+    content: "";
+    margin-left: 5px;
+}

@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './SeatingChart.css';
 
-const SeatingChart = ({ onSelectSection }) => {
+const SeatingChart = ({ onSelectSection, stadiumFile }) => {
   const [svgContent, setSvgContent] = useState(null);
-  const [hoveredSection, setHoveredSection] = useState(null);
+  const [, setHoveredSection] = useState(null);
   const [selectedSection, setSelectedSection] = useState(null); // Track selected section
   const containerRef = useRef(null);
 
   useEffect(() => {
-    fetch('/images/footprint_seating_chart.svg')
+    if (!stadiumFile) return;
+
+    fetch(stadiumFile)
       .then((res) => res.text())
       .then((data) => setSvgContent(data))
       .catch((err) => console.error('Error loading SVG:', err));
-  }, []);
+  }, [stadiumFile]);
 
   useEffect(() => {
     if (!svgContent) return;
