@@ -57,17 +57,26 @@
     margin: 0 auto;
     text-align: center;
   }
-  
-  /* Title for the tickets section */
-  .tickets-title {
-    max-width: 1000px;
-    padding: 20px;
-    font-size: 1.8rem;
-    /*margin-bottom: 20px;*/
-    color: #333;
-    margin: 20px auto;
-  }
-  
+
+  .ticket-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures everything inside starts at the same left point */
+}
+
+.tickets-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.game-details {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 0; /* Prevents unwanted extra spacing */
+}
+
   /* Styling for the table displaying the ticket information */
   .tickets-table {
     padding: 20px;
