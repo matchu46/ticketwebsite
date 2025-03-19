@@ -2,14 +2,14 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://gametime.co/mlb-baseball/cubs-at-diamondbacks-tickets/3-30-2025-phoenix-az-chase-field/events/66a15ed7b0cc2cb65c53b16c?q=suns&d=eyJzZWFyY2hTZXNzaW9uSUQiOiI5OGMyMjdkYS03ZGJlLTRjNzYtOTYxZi1iY2JkOWE3ZDQyYzgiLCJrZXlzdHJva2VTZXF1ZW5jZSI6MTAsImFwaVNlcXVlbmNlIjoyfQ%3D%3D&queryId=c9f292267b20c20ef7def35929dd89fa&resultPosition=1&searchIndex=events&searchSessionId=ffb4ede9-0ecf-40cb-9800-983656ccfa79";
-const outputFile = "bsb_gt_03_30.txt";
+const url = "https://gametime.co/mlb-baseball/rangers-at-diamondbacks-tickets/9-1-2025-phoenix-az-chase-field/events/66a1721966e0626c8de367e0";
+const outputFile = "bsb_gt_09_01.txt";
 const collectedTickets = new Set();
 const source = "Gametime";
 const baseUrl = "https://gametime.co";
-const date = "03-30-2025";
+const date = "09-01-2025";
 const homeTeam = "Dbacks";
-const awayTeam = "Cubs";
+const awayTeam = "Rangers";
 
 // Database file and connection
 const dbFile = "tickets.db";
