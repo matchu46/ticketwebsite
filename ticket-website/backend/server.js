@@ -9,7 +9,7 @@ const PORT = 5000;
 app.use(cors());
 
 // Database connection
-const db = new sqlite3.Database('./tickets.db');
+const db = new sqlite3.Database('./scrapers/tickets.db');
 
 // Get all tickets or apply filters
 app.get('/tickets', (req, res) => {

@@ -58,7 +58,7 @@ export default function DbacksTickets() {
             </div> 
     
             <h1>Tickets for {date}</h1>
-            <SeatingChart onSelectSection={setSelectedSection} />
+            <SeatingChart onSelectSection={setSelectedSection} stadiumFile={`/images/chasefield-seatingchart.svg`} />
     
             {/* Controls Container for Sorting and Filtering */}
             <div className="controls-container">

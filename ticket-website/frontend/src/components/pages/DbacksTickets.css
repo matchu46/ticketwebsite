@@ -36,11 +36,13 @@
     align-items: center;
     flex-wrap: wrap; /* Wrap for smaller screens */
     margin-bottom: 20px;
-    padding: 10px;
     background-color: #fff;
     border-radius: 8px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    padding-top: 20px;
 }
 
 /* Price range & sort controls */
@@ -116,3 +118,4 @@
     font-family: 'Arial', sans-serif;
     font-size: 1rem;
   } 
+
