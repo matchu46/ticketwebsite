@@ -4,21 +4,19 @@
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  height: auto; /* Allows the chart to adjust */
-  overflow: visible; /* Prevents cutting off */
-  padding-bottom: 20px; /* Ensures spacing before filters */
+  height: auto; 
+  overflow: visible; 
+  padding-bottom: 40px; /* Increased padding to create more space */
   margin: 0 auto;
 }
 
-
 .seating-chart-svg {
-  width: 80%; /* Adjust this as needed */
-  height: auto; /* Maintains aspect ratio */
-  max-width: 1000px; /* Optional: limit max size */
-  max-height: 90vh; /* Ensures it stays visible */
+  width: 80%; /* Changed from 80% to 100% */
+  height: auto; 
+  max-width: 1000px; /* Increased max-width */
+  max-height: 95vh; /* Adjusted to prevent overwhelming page */
 }
 
-/* Ensure that paths inside the SVG scale correctly */
 .seating-chart-svg svg {
   width: 100%;
   height: 100%;
