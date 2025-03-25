@@ -1,0 +1,75 @@
+  .date-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.date-button {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+
+.date-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.date-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tickets-table th,
+.tickets-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.game-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.game-box {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 80%;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.game-box:hover {
+  transform: scale(1.05);
+  border-color: #007bff;
+}
+
+.game-box.selected {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+.hero-cardinals {
+    height: 70vh;
+    width: 100%;
+}
+
+  

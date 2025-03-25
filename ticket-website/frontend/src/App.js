@@ -5,7 +5,8 @@ import './App.css';
 import Home from './components/pages/Home';
 import Dbacks from './components/pages/Dbacks';
 import Tickets from './components/pages/Tickets';
-import SignUp from './components/pages/SignUp';
+import Cardinals from './components/pages/Cardinals';
+import CardinalsTickets from './components/pages/CardinalsTickets';
 import TicketDetails from './components/pages/TicketDetails';
 import DbacksTickets from './components/pages/DbacksTickets';
 import Concerts from './components/pages/Concerts';
@@ -22,7 +23,8 @@ function App() {
           <Route path='/dbacks/:date' element={<DbacksTickets/>} />
           <Route path='/suns' element={<Tickets/>} />
           <Route path='/suns/:date' element={<TicketDetails/>} />
-          <Route path='/sign-up' element={<SignUp/>} />
+          <Route path='/cardinals' element={<Cardinals/>} />
+          <Route path='/cardinals/:date' element={<CardinalsTickets/>} />
           <Route path='/concerts' element={<Concerts/>} />
           <Route path='/concerts/:date' element={<ConcertsTickets/>} />
         </Routes>

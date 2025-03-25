@@ -14,7 +14,7 @@
   width: 80%; /* Changed from 80% to 100% */
   height: auto; 
   max-width: 1000px; /* Increased max-width */
-  max-height: 95vh; /* Adjusted to prevent overwhelming page */
+  max-height: 100vh; /* Adjusted to prevent overwhelming page */
 }
 
 .seating-chart-svg svg {
