@@ -14,7 +14,7 @@ export default function CardinalsTickets() {
     const [selectedSection, setSelectedSection] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/tickets')
+        fetch('http://localhost:5000/ticketsfb')
             .then(response => response.json())
             .then(data => setTickets(data.filter(ticket => ticket.date === date)))
             .catch(error => console.error('Error fetching ticket data:', error));
@@ -78,7 +78,7 @@ export default function CardinalsTickets() {
                     {tickets.length > 0 ? `${tickets[0].home_team} vs ${tickets[0].away_team}` : "Loading..."}
                 </h1>
                 <p className="game-details">
-                    {tickets.length > 0 ? `${tickets[0].date} - PHX Arena` : ""}
+                    {tickets.length > 0 ? `${tickets[0].date} - Statefarm Stadium` : ""}
                 </p>
 
             </div>

@@ -27,13 +27,13 @@ function Cards() {
             src="images/statefarm-stadium.jpg"
             text="Nothing beats Game day."
             label='Football'
-            path='/tickets'
+            path='/cardinals'
             />
             <CardItem 
-            src="images/suns_event.webp"
-            text="Head to Footprint Center!"
-            label='Basketball'
-            path='/suns'
+            src="images/statefarm-concert.jpg"
+            text="See your favorite artist!"
+            label='Concert'
+            path='/concerts'
             />
             <CardItem 
             src="images/booker-shot.jpg"

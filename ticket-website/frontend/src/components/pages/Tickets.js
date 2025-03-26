@@ -17,7 +17,15 @@ export default function Tickets() {
                 return response.json();
             })
             .then((data) => {
-                const grouped = data.reduce((acc, ticket) => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const futureGames = data.filter(ticket => {
+                    const gameDate = new Date(ticket.date);
+                    return gameDate >= today;
+                });
+
+                const grouped = futureGames.reduce((acc, ticket) => {
                     acc[ticket.date] = acc[ticket.date] || [];
                     acc[ticket.date].push(ticket);
                     return acc;
