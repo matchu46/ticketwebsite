@@ -26,8 +26,8 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="0.3734104"
-     inkscape:cx="998.90093"
-     inkscape:cy="865"
+     inkscape:cx="998.90094"
+     inkscape:cy="865.00001"
      inkscape:window-width="1536"
      inkscape:window-height="890"
      inkscape:window-x="-6"
@@ -168,6 +168,566 @@
          d="m 66.950464,522.21362 24.102168,-34.81424 123.188858,58.91641 13.39009,-34.81424 26.78018,13.39009 -21.42414,58.91641 -37.49226,-13.39009 -2.67802,13.39009 z"
          id="432"
          inkscape:label="432" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 184.78328,658.79258 40.17028,2.67802 8.03406,-72.30651 -32.13622,-10.71207 z"
+         id="431"
+         inkscape:label="431" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 182.10527,733.7771 h 40.17027 l 5.35604,-72.3065 -34.81424,2.67802 z"
+         id="430"
+         inkscape:label="430" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 184.78328,811.43964 40.17028,5.35604 v -74.98453 h -34.81424 z"
+         id="429"
+         inkscape:label="429" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 184.78328,902.49227 40.17028,2.67802 2.67802,-85.6966 -37.49226,2.67802 z"
+         id="428"
+         inkscape:label="428" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 184.78328,982.83283 37.49226,2.67802 v -74.98452 h -32.13622 z"
+         id="427"
+         inkscape:label="427" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 187.4613,1063.1734 40.17028,5.356 -2.67802,-77.66251 -34.81424,2.67801 z"
+         id="426"
+         inkscape:label="426" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 200.8514,1151.548 32.13622,-8.0341 -10.71208,-74.9845 -32.13622,2.678 z"
+         id="425"
+         inkscape:label="425" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 64.272447,1191.7183 125.866873,-42.8483 5.35604,16.0681 34.81424,-13.3901 24.10217,56.2384 -26.78019,13.3901 -13.39009,-32.1362 -123.188857,53.5603 z"
+         id="424"
+         inkscape:label="424" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 120.51084,1322.9412 -29.458207,-77.6625 117.832817,-50.8824 13.39009,32.1362 32.13623,-16.0681 40.17028,66.9505 -10.71208,26.7802 -37.49226,-50.8824 z"
+         id="423"
+         inkscape:label="423" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 208.88545,1438.096 -77.66254,-104.4427 107.12075,-69.6285 40.17028,56.2384 32.13622,-16.0681 74.98452,72.3065 -21.42415,24.1021 -53.56037,-58.9164 z"
+         id="422"
+         inkscape:label="422" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 316.0062,1537.1827 -96.40867,-91.0527 88.37461,-91.0526 56.23839,53.5604 26.78019,-24.1022 69.62848,48.2044 -13.39009,24.1021 -45.52632,-26.7802 z"
+         id="421"
+         inkscape:label="421" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 436.51703,1612.1672 -109.79876,-69.6285 69.62848,-104.4427 53.56038,34.8142 18.74613,-37.4922 104.44272,50.8823 -10.71207,32.1363 -64.27245,-26.7802 z"
+         id="420"
+         inkscape:label="420" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 575.774,1655.0155 -128.54489,-34.8142 50.88235,-123.1889 109.79876,42.8483 z"
+         id="419"
+         inkscape:label="419" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 645.40248,1663.0496 -58.9164,2.678 29.4582,-136.579 -45.52632,-10.712 8.03406,-29.4583 72.3065,16.0682 z"
+         id="418"
+         inkscape:label="418" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 712.35295,1663.0496 -56.23839,5.356 2.67802,-168.7152 58.91641,5.3561 z"
+         id="417"
+         inkscape:label="417" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 784.65945,1665.7276 5.35604,-160.6811 h -69.62848 v 160.6811 z"
+         id="416"
+         inkscape:label="416" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 787.33747,1665.7276 h 69.62848 l -2.67801,-141.935 -8.03406,-18.7461 -53.56037,2.678 z"
+         id="415"
+         inkscape:label="415" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 859.64397,1665.7276 61.59443,5.356 2.67802,-166.0371 h -50.88235 l -8.03406,24.1021 z"
+         id="414"
+         inkscape:label="414" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 923.91642,1660.3715 53.56037,5.3561 2.67802,-18.7462 h 10.71208 l 8.03405,-117.8328 -16.06811,-18.7461 -50.88235,2.678 z"
+         id="413"
+         inkscape:label="413" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1057.8174,1663.0496 -42.8483,5.356 v -18.7461 h -13.3901 v -120.5109 l 13.3901,-21.4241 h 48.2043 z"
+         id="412"
+         inkscape:label="412" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1068.5294,1660.3715 5.3561,-155.325 h 48.2043 l 10.7121,24.1021 2.678,141.935 z"
+         id="411"
+         inkscape:label="411" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1138.1579,1665.7276 v -144.613 l 13.3901,-16.0681 56.2384,2.678 -5.356,163.3591 z"
+         id="410"
+         inkscape:label="410" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1202.4304,1663.0496 5.356,-158.0031 66.9505,2.678 v 163.3591 z"
+         id="409"
+         inkscape:label="409" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1274.7369,1663.0496 5.356,-155.3251 58.9164,2.678 v 155.3251 z"
+         id="408"
+         inkscape:label="408" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1341.6873,1665.7276 8.0341,-160.6811 64.2724,-10.7121 13.3901,26.7802 -48.2043,8.034 29.4582,131.2229 z"
+         id="407"
+         inkscape:label="407" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1411.3158,1655.0155 -18.7461,-115.1548 107.1207,-42.8483 50.8824,123.1889 z"
+         id="406"
+         inkscape:label="406" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1665.7276,1537.1827 -72.3065,-101.7647 -45.5263,37.4922 -18.7462,-37.4922 -109.7987,53.5603 16.0681,32.1363 66.9504,-32.1363 53.5604,125.8669 z"
+         id="405"
+         inkscape:label="405" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1772.8483,1438.096 -83.0186,-80.3406 -56.2383,50.8824 -29.4583,-29.4582 -66.9504,53.5604 13.3901,24.1021 48.2043,-29.4582 74.9845,115.1548 z"
+         id="404"
+         inkscape:label="404" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1858.5449,1330.9752 -99.0867,-66.9504 -37.4922,58.9164 -40.1703,-21.4242 -69.6285,72.3065 21.4242,26.7802 56.2383,-61.5944 96.4087,99.0867 z"
+         id="403"
+         inkscape:label="403" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1898.7152,1242.6006 -109.7988,-48.2043 -10.712,34.8142 -40.1703,-21.4241 -40.1703,72.3065 18.7461,26.7802 34.8143,-53.5604 112.4768,74.9845 z"
+         id="402"
+         inkscape:label="402" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1917.4613,1194.3963 -115.1548,-45.5263 -10.7121,16.0681 -26.7801,-10.7121 -18.7462,53.5604 26.7802,10.7121 10.7121,-37.4923 120.5108,61.5944 z"
+         id="401"
+         inkscape:label="401" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1665.7276,583.80806 -32.1362,-66.95047 -66.9505,40.17028 32.1362,58.91641 z"
+         id="248"
+         inkscape:label="248" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1628.2353,511.50155 -37.4922,-61.59442 -61.5945,48.20433 40.1703,53.56037 z"
+         id="247"
+         inkscape:label="247" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1580.031,447.22911 -40.1703,-53.56037 -50.8824,56.23839 37.4923,42.84829 z"
+         id="246"
+         inkscape:label="246" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1526.4706,385.63468 -58.9164,-37.49226 -32.1362,61.59443 48.2043,40.17028 z"
+         id="245"
+         inkscape:label="245" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1456.8421,337.43034 -72.3065,-26.78018 -18.7461,69.62848 66.9505,29.45821 z"
+         id="244"
+         inkscape:label="244" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1379.1796,305.29412 -72.3065,-5.35604 2.678,69.62849 50.8824,8.03405 z"
+         id="243"
+         inkscape:label="243" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1298.839,294.58205 h -64.2724 l 8.034,77.66254 61.5945,-2.67802 z"
+         id="242"
+         inkscape:label="242" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1229.2105,294.58205 h -50.8823 v 74.98452 h 58.9164 z"
+         id="241"
+         inkscape:label="241" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1164.9381,297.26007 h -48.2043 v 74.98452 l 56.2384,-2.67802 z"
+         id="240"
+         inkscape:label="240" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1108.6997,294.58205 -50.8823,2.67802 2.678,74.98452 h 50.8823 z"
+         id="239"
+         inkscape:label="239" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1052.4613,297.26007 h -50.8823 l -2.67806,74.98452 56.23836,-2.67802 z"
+         id="238"
+         inkscape:label="238" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 990.86689,297.26007 -50.88236,2.67801 v 72.30651 h 56.23839 z"
+         id="237"
+         inkscape:label="237" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 929.27246,294.58205 h -45.52632 v 80.34056 h 50.88235 z"
+         id="236"
+         inkscape:label="236" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 875.71209,297.26007 -56.2384,2.67801 2.67802,74.98453 56.23839,-2.67802 z"
+         id="235"
+         inkscape:label="235" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 811.43964,291.90403 -53.56037,2.67802 v 77.66254 l 58.91641,-2.67802 z"
+         id="234"
+         inkscape:label="234" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 749.84521,297.26007 -58.91641,2.67801 v 72.30651 h 64.27245 z"
+         id="233"
+         inkscape:label="233" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 682.89475,289.22601 -74.98453,21.42415 29.45821,69.62848 53.56037,-10.71207 z"
+         id="232"
+         inkscape:label="232" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 599.87617,305.29412 -64.27245,37.49226 34.81424,66.95047 61.59443,-26.78019 z"
+         id="231"
+         inkscape:label="231" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 524.89165,342.78638 -64.27245,50.88236 50.88235,48.20433 50.88236,-29.4582 z"
+         id="230"
+         inkscape:label="230" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 452.58514,393.66874 -45.52631,56.23839 61.59443,42.84829 34.81424,-40.17028 z"
+         id="229"
+         inkscape:label="229" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 399.02477,449.90713 -32.13622,64.27244 66.95046,34.81424 29.45821,-53.56037 z"
+         id="228"
+         inkscape:label="228" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 358.85449,519.53561 -29.4582,69.62848 69.62848,24.10217 29.45821,-56.23839 z"
+         id="227"
+         inkscape:label="227" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 321.36223,1138.1579 77.66254,-24.1022 29.45821,61.5945 -66.95047,34.8142 z"
+         id="222"
+         inkscape:label="222" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 358.85449,1210.4644 74.98452,-26.7802 32.13623,48.2044 -64.27245,45.5263 z"
+         id="221"
+         inkscape:label="221" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 404.38081,1277.4149 61.59443,-40.1703 37.49226,37.4923 -42.8483,58.9164 z"
+         id="220"
+         inkscape:label="220" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 457.94118,1341.6873 50.88236,-53.5603 53.56037,34.8142 -32.13623,61.5944 z"
+         id="219"
+         inkscape:label="219" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 527.56967,1387.2136 40.17028,-64.2724 61.59442,26.7802 -24.10216,69.6285 z"
+         id="218"
+         inkscape:label="218" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 607.91022,1419.3499 24.10217,-66.9505 56.23839,8.0341 -2.67802,72.3065 z"
+         id="217"
+         inkscape:label="217" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 688.25078,1430.0619 5.35604,-66.9504 58.91641,-2.678 2.67802,72.3065 z"
+         id="216"
+         inkscape:label="216" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 752.52323,1430.0619 5.35604,-64.2724 h 56.23839 v 64.2724 z"
+         id="215"
+         inkscape:label="215" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 816.79568,1427.3839 2.67801,-72.3065 61.59443,2.678 -5.35603,77.6626 z"
+         id="214"
+         inkscape:label="214" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 878.3901,1430.0619 v -66.9504 h 56.23839 l 2.67802,66.9504 z"
+         id="213"
+         inkscape:label="213" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 931.95048,1424.7059 8.03405,-66.9505 h 58.91641 l -2.67802,74.9846 z"
+         id="212"
+         inkscape:label="212" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 998.90094,1432.74 v -72.3065 h 56.23836 v 66.9504 z"
+         id="211"
+         inkscape:label="211" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1055.1393,1430.0619 2.6781,-69.6284 53.5603,2.678 2.678,64.2724 z"
+         id="210"
+         inkscape:label="210" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1116.7338,1424.7059 v -66.9505 l 58.9164,2.6781 -2.678,69.6284 z"
+         id="209"
+         inkscape:label="209" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1178.3282,1427.3839 v -66.9504 h 64.2724 v 72.3065 z"
+         id="208"
+         inkscape:label="208" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1237.2446,1424.7059 2.678,-64.2724 h 61.5944 v 69.6284 z"
+         id="207"
+         inkscape:label="207" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1301.517,1427.3839 5.3561,-69.6285 53.5604,-8.034 24.1021,69.6285 z"
+         id="206"
+         inkscape:label="206" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1387.2136,1416.6718 -21.4241,-64.2724 66.9505,-29.4582 32.1362,69.6285 z"
+         id="205"
+         inkscape:label="205" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1454.1641,1381.8576 -21.4241,-64.2724 50.8823,-37.4923 50.8824,61.5944 z"
+         id="204"
+         inkscape:label="204" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1529.1486,1330.9752 -40.1703,-56.2383 42.8483,-40.1703 53.5604,48.2043 z"
+         id="203"
+         inkscape:label="203" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1582.709,1274.7369 -48.2043,-40.1703 29.4582,-50.8824 66.9504,34.8143 z"
+         id="202"
+         inkscape:label="202" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1628.2353,1205.1084 -56.2384,-26.7802 24.1022,-66.9505 72.3065,29.4582 z"
+         id="201"
+         inkscape:label="201" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="M 1588.065,640.04645 1547.8948,527.56967 1381.8576,645.40248 Z"
+         id="137"
+         inkscape:label="137" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1542.5387,522.21363 -37.4922,-48.20434 -50.8824,-37.49226 -120.5108,192.81734 h 58.9164 z"
+         id="136"
+         inkscape:label="136" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1451.4861,428.48298 -120.5109,-45.52632 -42.8482,224.95356 37.4922,18.74613 z"
+         id="135"
+         inkscape:label="135" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1328.2972,377.60062 h -88.3746 l 2.678,227.63159 37.4923,2.67801 z"
+         id="134"
+         inkscape:label="134" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1229.2105,374.92261 -48.2043,2.67801 2.678,224.95357 h 56.2384 z"
+         id="133"
+         inkscape:label="133" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1170.2941,372.24459 -53.5603,8.03405 2.678,224.95357 56.2384,-2.67802 z"
+         id="132"
+         inkscape:label="132" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1108.6997,374.92261 h -50.8823 l 2.678,230.3096 50.8823,-2.67802 z"
+         id="131"
+         inkscape:label="131" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1049.7833,374.92261 -48.2043,2.67801 2.678,227.63159 53.5604,-2.67802 z"
+         id="130"
+         inkscape:label="130" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 988.18887,374.92261 -48.20434,2.67801 5.35604,230.3096 50.88235,-2.67801 z"
+         id="129"
+         inkscape:label="129" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 931.95048,377.60062 -50.88236,2.67802 5.35604,222.27555 50.88235,2.67802 z"
+         id="128"
+         inkscape:label="128" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 873.03407,377.60062 h -56.23839 l 5.35603,227.63159 56.23839,-2.67802 z"
+         id="127"
+         inkscape:label="127" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 814.11766,374.92261 -56.23839,2.67801 2.67801,222.27555 h 56.2384 z"
+         id="126"
+         inkscape:label="126" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 749.84521,374.92261 -88.37461,5.35603 -66.95047,18.74613 93.73065,216.91951 66.95047,-10.71207 z"
+         id="125"
+         inkscape:label="125" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 589.16409,399.02477 -50.88235,37.49226 -42.8483,40.17028 158.0031,163.35914 29.45821,-24.10217 z"
+         id="124"
+         inkscape:label="124" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 484.72137,476.68731 -32.13623,53.56037 -29.4582,53.56038 208.88545,88.37461 18.74613,-29.4582 z"
+         id="123"
+         inkscape:label="123" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 412.41487,586.48608 -8.03406,64.27244 -10.71207,56.23839 232.98761,-2.67802 5.35604,-29.4582 z"
+         id="122"
+         inkscape:label="122" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 613.26626,712.35295 -219.59752,-5.35604 v 64.27245 l 232.98761,-5.35604 z"
+         id="121"
+         inkscape:label="121" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 618.6223,768.59134 -224.95356,5.35604 2.67801,58.91641 211.56347,-2.67802 -2.67801,-29.45821 h 16.06811 z"
+         id="120"
+         inkscape:label="120" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 615.94428,830.18577 -222.27554,5.35604 v 61.59442 l 232.98761,-5.35603 z"
+         id="119"
+         inkscape:label="119" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 390.99072,897.13623 219.59752,2.67802 -2.67802,26.78019 h 16.06812 v 32.13622 l -232.98762,-5.35604 z"
+         id="118"
+         inkscape:label="118" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 388.3127,961.40868 h 235.66564 l 2.67801,58.91642 H 390.99072 Z"
+         id="117"
+         inkscape:label="117" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 385.63468,1017.6471 16.06811,64.2724 21.42415,61.5944 206.20743,-88.3746 -5.35603,-32.1362 z"
+         id="116"
+         inkscape:label="116" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 420.44892,1143.5139 32.13622,61.5945 37.49227,48.2043 158.00309,-166.0371 -18.74613,-26.7802 z"
+         id="115"
+         inkscape:label="115" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 589.16409,1320.2632 -48.20433,-21.4242 -45.52632,-48.2043 158.0031,-158.0031 24.10217,18.7461 z"
+         id="114"
+         inkscape:label="114" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 744.48917,1349.7214 h -80.34055 l -66.95047,-24.1022 88.37461,-216.9195 34.81425,13.3901 -2.67802,26.7802 24.10216,-2.678 v -21.4242 h 10.71208 z"
+         id="113"
+         inkscape:label="113" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 808.76162,1349.7214 -50.88235,2.678 v -227.6316 h 58.91641 z"
+         id="112"
+         inkscape:label="112" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 873.03407,1347.0434 -53.56038,5.356 -2.67801,-230.3096 64.27244,5.356 z"
+         id="111"
+         inkscape:label="111" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 931.95048,1347.0434 -45.52632,2.678 -2.67802,-222.2756 53.56037,2.6781 z"
+         id="110"
+         inkscape:label="110" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 988.18887,1347.0434 h -48.20434 l 2.67802,-224.9536 56.23839,5.356 z"
+         id="109"
+         inkscape:label="109" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1052.4613,1349.7214 h -50.8823 v -219.5975 h 50.8823 z"
+         id="108"
+         inkscape:label="108" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1108.6997,1352.3994 h -48.2043 l 2.678,-227.6316 50.8823,2.678 z"
+         id="107"
+         inkscape:label="107" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1170.2941,1349.7214 h -56.2384 l 5.3561,-222.2756 h 56.2384 z"
+         id="106"
+         inkscape:label="106" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1234.5666,1349.7214 h -53.5604 l -2.678,-224.9536 58.9164,2.678 z"
+         id="105"
+         inkscape:label="105" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1322.9412,1347.0434 -77.6625,8.034 v -230.3096 l 34.8142,-5.356 z"
+         id="104"
+         inkscape:label="104" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1446.13,1293.483 -50.8823,37.4922 -64.2725,16.0682 -45.5263,-232.9877 40.1703,-13.3901 z"
+         id="103"
+         inkscape:label="103" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1537.1827,1199.7523 -152.6471,-99.0867 -53.5604,-2.678 125.8669,198.1734 48.2044,-42.8483 z"
+         id="102"
+         inkscape:label="102" />
+      <path
+         style="fill:transparent; cursor:pointer"
+         d="m 1590.7431,1081.9195 -208.8855,2.678 168.7152,112.4768 z"
+         id="101"
+         inkscape:label="101" />
     </g>
   </g>
 </svg>

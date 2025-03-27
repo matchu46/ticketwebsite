@@ -68,8 +68,37 @@
 }
 
 .hero-cardinals {
-    height: 70vh;
-    width: 100%;
+  height: 70vh;
+  width: 100%;
+  height: fit-content;
+  max-height: 80vh;
+}
+
+.cardinals-title {
+  max-width: 1000px;
+    padding: 20px;
+    font-size: 1.8rem;
+    /*margin-bottom: 20px;*/
+    color: #333;
+    margin: 20px auto;
+}
+
+.game-info {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers everything horizontally */
+  gap: 15px; /* Adds spacing between logos and text */
+}
+
+.team-logo {
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  object-fit: contain;
+}
+
+.game-text {
+  text-align: center;
+  font-size: 1.1rem;
 }
 
   

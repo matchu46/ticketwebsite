@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate} from 'react-router-dom';
-import './Concerts.css';
 import '../../App.css';
+import './Concerts.css';
 import Footer from '../Footer';
 
 export default function Concerts() {
@@ -42,7 +42,7 @@ export default function Concerts() {
     return (
         <div className="tickets-container">
             <img src="/images/statefarm-stadium-concert.jpg" alt="Concerts" className="hero-concerts"/>
-            <h1 className="tickets-title">Tickets by Concert Date</h1>
+            <h1 className="concerts-title">Tickets by Concert Date</h1>
 
             <div className="game-boxes">
                 {Object.keys(groupedTickets).sort((a, b) => new Date(a) - new Date(b)).map(date => {

@@ -27,6 +27,17 @@
   }
   
   .hero-concerts {
-      height: 70vh;
-      width: 100%;
+    height: 70vh;
+    width: 100%;
+    height: fit-content;
+    max-height: 80vh;
   } 
+
+  .concerts-title {
+    max-width: 1000px;
+    padding: 20px;
+    font-size: 1.8rem;
+    /*margin-bottom: 20px;*/
+    color: #333;
+    margin: 20px auto;
+  }

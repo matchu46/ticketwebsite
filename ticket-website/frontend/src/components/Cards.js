@@ -25,7 +25,7 @@ function Cards() {
           <ul class="cards__items">
             <CardItem 
             src="images/statefarm-stadium.jpg"
-            text="Nothing beats Game day."
+            text="Nothing beats game day!"
             label='Football'
             path='/cardinals'
             />
