@@ -2,14 +2,14 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://gametime.co/mlb-baseball/rangers-at-diamondbacks-tickets/9-1-2025-phoenix-az-chase-field/events/66a1721966e0626c8de367e0";
-const outputFile = "bsb_gt_09_01.txt";
+const url = "https://gametime.co/mlb-baseball/reds-at-diamondbacks-tickets/8-24-2025-phoenix-az-chase-field/events/66a17210999f484d998f0058";
+const outputFile = "bsb_gt_08_24.txt";
 const collectedTickets = new Set();
 const source = "Gametime";
 const baseUrl = "https://gametime.co";
-const date = "09-01-2025";
+const date = "08-24-2025";
 const homeTeam = "Dbacks";
-const awayTeam = "Rangers";
+const awayTeam = "Reds";
 
 // Database file and connection
 const dbFile = "tickets.db";
