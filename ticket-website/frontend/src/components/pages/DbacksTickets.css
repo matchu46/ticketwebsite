@@ -77,11 +77,9 @@
   /* Title for the tickets section */
   .tickets-title {
     max-width: 1000px;
-    padding: 20px;
+    /* padding: 20px; */
     font-size: 1.8rem;
-    /*margin-bottom: 20px;*/
     color: #333;
-    /* margin: 20px auto; */
   }
   
   /* Styling for the table displaying the ticket information */
