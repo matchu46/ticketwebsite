@@ -129,3 +129,87 @@
     content: "";
     margin-left: 5px;
 }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;  /* Align to top */
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px; /* Space between left and right columns */
+}
+
+/* Left Column: Fixed position */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: sticky;
+  top: 10px; /* Keeps it stuck to the top while scrolling */
+  height: 89vh; /* Keeps it from taking up too much space */
+  /*overflow-y: auto; /* Allows scrolling if content is too tall */
+  /* padding: 10px; */
+  border-radius: 10px;
+}
+
+/* Right Column: Scrollable tickets */
+.right-column {
+  width: 50%;
+  max-height: 89vh; /* Prevents overflowing the viewport */
+  overflow-y: auto; /* Allows scrolling */
+  padding: 10px;
+}
+
+.tickets-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tickets-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 3; /* Ensures it's above ticket rows */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Enhances separation */
+  background-color: #6b7f4b;
+}
+
+.tickets-table th {
+  background-color: white;
+  padding: 10px;
+  border-bottom: 2px solid black;
+  text-align: left;
+}
+
+
+/* Responsive: Stack everything on small screens */
+@media (max-width: 900px) {
+  .main-content {
+      flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+      width: 100%;
+      position: static; /* Remove fixed behavior */
+      height: auto;
+  }
+
+  .right-column {
+      max-height: none;
+      overflow: visible;
+  }
+}
+
+@media (min-width: 901px) {
+  .page-container {
+      overflow: hidden;
+      height: 100%;
+  }
+}

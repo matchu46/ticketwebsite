@@ -233,7 +233,7 @@ export default function DbacksTickets() {
                             {tickets.length > 0 ? `${tickets[0].home_team} vs ${tickets[0].away_team}` : "Loading..."}
                         </h1>
                         <p className="game-details">
-                            {tickets.length > 0 ? `${tickets[0].date} - PHX Arena` : ""}
+                            {tickets.length > 0 ? `${tickets[0].date} - Chase Field` : ""}
                         </p>
                     </div>
     

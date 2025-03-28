@@ -67,73 +67,90 @@ export default function TicketDetails() {
     };
 
     return (
-        <div className="ticket-details-container">
-            <div className="hero-btns">
-                <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large' to='/suns'>
-                    Back to Games
-                </Button>
-            </div>
-            <div className="ticket-info">
-                <h1 className="tickets-title">
-                    {tickets.length > 0 ? `${tickets[0].home_team} vs ${tickets[0].away_team}` : "Loading..."}
-                </h1>
-                <p className="game-details">
-                    {tickets.length > 0 ? `${tickets[0].date} - PHX Arena` : ""}
-                </p>
-
-            </div>
-            <SeatingChart onSelectSection={setSelectedSection} stadiumFile={`/images/footprint-seating-chart.svg`} />
-
-            <div className="controls-container">
-                <div className="price-range">
-                    <label>Min Price:
-                        <input type="number" value={minPrice} onChange={(e) => setMinPrice(Number(e.target.value))} />
-                    </label>
-                    <label>Max Price:
-                        <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} />
-                    </label>
+        <div className="page-container">
+            <div className="main-content">
+                {/* Left Column: Game info, filters, and seating chart */}
+                <div className="left-column">
+                    <div className="hero-btns">
+                        <Button 
+                            className='btns' 
+                            buttonStyle='btn--outline'
+                            buttonSize='btn--medium'
+                            to='/suns'
+                        >
+                            Back to Games
+                        </Button>
+                    </div>
+                    <div className="ticket-info">
+                        <h1 className="tickets-title">
+                            {tickets.length > 0 ? `${tickets[0].home_team} vs ${tickets[0].away_team}` : "Loading..."}
+                        </h1>
+                        <p className="game-details">
+                            {tickets.length > 0 ? `${tickets[0].date} - PHX Arena` : ""}
+                        </p>
+                    </div>
+    
+                    {/* Filters */}
+                    <div className="controls-container">
+                        <div className="price-range">
+                            <label>Min Price:
+                                <input type="number" value={minPrice} onChange={(e) => setMinPrice(Number(e.target.value))} />
+                            </label>
+                            <label>Max Price:
+                                <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} />
+                            </label>
+                        </div>
+                        <div className="source-filter">
+                            <label>Ticket Source:
+                                <select value={selectedSource} onChange={(e) => setSelectedSource(e.target.value)}>
+                                    <option value="all">All Sources</option>
+                                    <option value="Gametime">Gametime</option>
+                                    <option value="StubHub">StubHub</option>
+                                    <option value="TickPick">TickPick</option>
+                                    <option value="Vivid Seats">Vivid Seats</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+    
+                    {/* Seating Chart */}
+                    <div className="seating-container">
+                        <SeatingChart onSelectSection={setSelectedSection} stadiumFile={`/images/footprint-seating-chart.svg`} />
+                    </div>
                 </div>
-                <div className="source-filter">
-                    <label>Ticket Source:
-                        <select value={selectedSource} onChange={(e) => setSelectedSource(e.target.value)}>
-                            <option value="all">All Sources</option>
-                            <option value="Gametime">Gametime</option>
-                            <option value="StubHub">StubHub</option>
-                            <option value="TickPick">TickPick</option>
-                            <option value="Vivid Seats">Vivid Seats</option>
-                        </select>
-                    </label>
+    
+                {/* Right Column: Tickets Table */}
+                <div className="right-column">
+                    {filteredTickets.length === 0 ? (
+                        <p className="no-tickets">No tickets available in this price range.</p>
+                    ) : (
+                        <table className="tickets-table">
+                            <thead>
+                                <tr>
+                                    <th onClick={() => handleSort("section")}>Section {getSortIndicator("section")}</th>
+                                    <th onClick={() => handleSort("row")}>Row {getSortIndicator("row")}</th>
+                                    <th onClick={() => handleSort("estimated_price")}>Est. Price {getSortIndicator("estimated_price")}</th>
+                                    <th onClick={() => handleSort("source")}>Source {getSortIndicator("source")}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {sortedTickets.map((ticket, index) => (
+                                    <tr key={index}>
+                                        <td>{ticket.section}</td>
+                                        <td>{ticket.row}</td>
+                                        <td>${ticket.estimated_price.toFixed(2)}</td>
+                                        <td>
+                                            <a href={ticket.url} target="_blank" rel="noopener noreferrer">
+                                                {ticket.source}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </div>
-
-            {filteredTickets.length === 0 ? (
-                <p className="no-tickets">No tickets available in this price range.</p>
-            ) : (
-                <table className="tickets-table">
-                    <thead>
-                        <tr>
-                            <th onClick={() => handleSort("section")}>Section {getSortIndicator("section")}</th>
-                            <th onClick={() => handleSort("row")}>Row {getSortIndicator("row")}</th>
-                            <th onClick={() => handleSort("estimated_price")}>Est. Price {getSortIndicator("estimated_price")}</th>
-                            <th onClick={() => handleSort("source")}>Source {getSortIndicator("source")}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sortedTickets.map((ticket, index) => (
-                            <tr key={index}>
-                                <td>{ticket.section}</td>
-                                <td>{ticket.row}</td>
-                                <td>${ticket.estimated_price.toFixed(2)}</td>
-                                <td>
-                                    <a href={ticket.url} target="_blank" rel="noopener noreferrer">
-                                        {ticket.source}
-                                    </a>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
         </div>
     );
 }
