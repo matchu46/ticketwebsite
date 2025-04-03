@@ -4,11 +4,11 @@ const sqlite3 = require('sqlite3').verbose(); // For SQLite DB
 const fs = require('fs');                // For file operations
 
 // Configuration constants
-const url = "https://www.stubhub.com/arizona-diamondbacks-phoenix-tickets-7-1-2025/event/154663621/?quantity=2";
-const outputFile = "bsb_sh_07_01.txt";
-const gameDate = "07-01-2025";
+const url = "https://www.stubhub.com/arizona-diamondbacks-phoenix-tickets-6-1-2025/event/154663164/?quantity=2";
+const outputFile = "bsb_sh_06_01.txt";
+const gameDate = "06-01-2025";
 const homeTeam = "Dbacks";
-const awayTeam = "Giants";
+const awayTeam = "Nationals";
 const source = "StubHub"; // Assuming this is the source
 
 // Initialize the database and create the `ticketsbsb` table if it doesn't exist
@@ -63,8 +63,7 @@ const runAsync = (query, params = []) => {
     });
 
     const page = await browser.newPage();
-    await page.goto(url, { timeout: 0 });
-
+    await page.goto(url, { waitUntil: 'networkidle2' });
 
     await page.evaluate(() => {
         const overlay = document.querySelector('.loading-overlay, .spinner-class');
@@ -85,9 +84,9 @@ const runAsync = (query, params = []) => {
                 if (!listingId) continue;
 
                 const ticketUrl = `${url}&listingId=${listingId}`;
-                const section = await ticketElement.$eval('.sc-f87eed75-0.sc-f87eed75-6.dWGCxc.evczei', el => el.innerText.trim().match(/Section\s*(\d+)/)?.[1]);
-                const row = await ticketElement.$eval('.sc-f87eed75-25.hwbgxD', el => el.innerText.trim().match(/Row\s*(\d+)/)?.[1]);
-                const priceText = await ticketElement.$eval('.sc-f87eed75-0.sc-f87eed75-1.dWGCxc.iwVOyT', el => el.innerText.trim());
+                const section = await ticketElement.$eval('.sc-fd01ffb-0.sc-fd01ffb-6.jBMRtu.ifPVso', el => el.innerText.trim().match(/Section\s*(\d+)/)?.[1]);
+                const row = await ticketElement.$eval('.sc-fd01ffb-24.NKtZA', el => el.innerText.trim().match(/Row\s*(\d+)/)?.[1]);
+                const priceText = await ticketElement.$eval('.sc-fd01ffb-0.sc-fd01ffb-1.jBMRtu.ksrMNx', el => el.innerText.trim());
                 let price = parseFloat(priceText.replace(/[^\d.]/g, ''));
                 let estimatedPrice = price <= 25 ? (price * 1.8).toFixed(2) :
                                     price <= 60 ? (price * 1.6).toFixed(2) :
