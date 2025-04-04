@@ -2,11 +2,11 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.tickpick.com/buy-arizona-diamondbacks-vs-washington-nationals-tickets-chase-field-6-1-25-1pm/6575003/?qty=2-false";
-const outputFile = "bsb_tp_06_01.txt";
-const gameDate = "06-01-2025";
+const url = "https://www.tickpick.com/buy-arizona-diamondbacks-vs-tampa-bay-rays-tickets-chase-field-4-24-25-6pm/6574891/?qty=2-false";
+const outputFile = "bsb_tp_04_24.txt";
+const gameDate = "04-24-2025";
 const homeTeam = "Dbacks";
-const awayTeam = "Nationals";
+const awayTeam = "Rays";
 const source = "TickPick";
 
 // Database file and connection

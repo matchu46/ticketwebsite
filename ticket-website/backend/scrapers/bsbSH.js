@@ -4,11 +4,11 @@ const sqlite3 = require('sqlite3').verbose(); // For SQLite DB
 const fs = require('fs');                // For file operations
 
 // Configuration constants
-const url = "https://www.stubhub.com/arizona-diamondbacks-phoenix-tickets-6-1-2025/event/154663164/?quantity=2";
-const outputFile = "bsb_sh_06_01.txt";
-const gameDate = "06-01-2025";
+const url = "https://www.stubhub.com/arizona-diamondbacks-phoenix-tickets-4-24-2025/event/154654624/?quantity=2";
+const outputFile = "bsb_sh_04_24.txt";
+const gameDate = "04-24-2025";
 const homeTeam = "Dbacks";
-const awayTeam = "Nationals";
+const awayTeam = "Rays";
 const source = "StubHub"; // Assuming this is the source
 
 // Initialize the database and create the `ticketsbsb` table if it doesn't exist
