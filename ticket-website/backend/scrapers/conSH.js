@@ -4,11 +4,11 @@ const sqlite3 = require('sqlite3').verbose(); // For SQLite DB
 const fs = require('fs');                // For file operations
 
 // Configuration constants
-const url = "https://www.stubhub.com/wu-tang-clan-phoenix-tickets-6-18-2025/event/157376307/?quantity=2";
-const outputFile = "con_sh_06_18.txt";
-const gameDate = "06-18-2025";
-const homeTeam = "PHX Arena";
-const awayTeam = "Wu Tang Clan";
+const url = "https://www.stubhub.com/disturbed-phoenix-tickets-5-15-2025/event/155763219/?quantity=2";
+const outputFile = "con_sh_05_15.txt";
+const gameDate = "05-15-2025";
+const homeTeam = "Phx Arena";
+const awayTeam = "Disturbed";
 const source = "StubHub"; // Assuming this is the source
 
 // Initialize the database and create the `ticketscon` table if it doesn't exist
@@ -97,9 +97,9 @@ const runAsync = (query, params = []) => {
                 const ticketUrl = `${url}&listingId=${listingId}`;
 
                 // Extract section, row, and price
-                const section = await ticketElement.$eval('.sc-1t1b4cp-0.sc-1t1b4cp-6.eMtQWq.dQzlcE', el => el.innerText.trim().match(/Section\s*(\d+)/)?.[1] || null);
-                const row = await ticketElement.$eval('.sc-1t1b4cp-25.eYtDdR', el => el.innerText.trim().match(/Row\s*(\d+)/)?.[1] || null);
-                const priceText = await ticketElement.$eval('.sc-1t1b4cp-0.sc-1t1b4cp-1.eMtQWq.jJnid', el => el.innerText.trim());
+                const section = await ticketElement.$eval('.sc-fd01ffb-0.sc-fd01ffb-6.jBMRtu.ifPVso', el => el.innerText.trim().match(/Section\s*(\d+)/)?.[1] || null);
+                const row = await ticketElement.$eval('.sc-fd01ffb-24.NKtZA', el => el.innerText.trim().match(/Row\s*(\d+)/)?.[1] || null);
+                const priceText = await ticketElement.$eval('.sc-fd01ffb-0.sc-fd01ffb-1.jBMRtu.ksrMNx', el => el.innerText.trim());
                 let price = parseFloat(priceText.replace(/[^\d.]/g, ''));
 
                 // Calculate estimated price

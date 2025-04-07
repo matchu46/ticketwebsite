@@ -2,13 +2,13 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://www.tickpick.com/buy-wu-tang-clan-tickets-footprint-center-6-18-25-8pm/7006419/?qty=2-false";
-const outputFile = "con_tp_06_18.txt";
-const gameDate = "06-18-2025";
+const url = "https://www.tickpick.com/buy-disturbed-daughtry-nothing-more-tickets-phx-arena-5-15-25-6pm/6756956/?qty=2-false";
+const outputFile = "con_tp_05_15.txt";
+const gameDate = "05-15-2025";
 const homeTeam = "Phx Arena";
-const awayTeam = "Wu Tang Clan";
+const awayTeam = "Disturbed";
 const source = "TickPick";
-
+ 
 // Database file and connection
 const dbFile = "tickets.db"; 
 const db = new sqlite3.Database(dbFile);

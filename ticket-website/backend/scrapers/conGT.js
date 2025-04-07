@@ -2,15 +2,15 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://gametime.co/concert/wu-tang-clan-tickets/6-18-2025-phoenix-az-footprint-center/events/67bcfa2e6b7b34f72aff37f2?q=suns&d=eyJzZWFyY2hTZXNzaW9uSUQiOiI5OGMyMjdkYS03ZGJlLTRjNzYtOTYxZi1iY2JkOWE3ZDQyYzgiLCJrZXlzdHJva2VTZXF1ZW5jZSI6MTAsImFwaVNlcXVlbmNlIjoyfQ%3D%3D&queryId=e48fdec493d133683373d255c4ed1a00&resultPosition=1&searchIndex=events&searchSessionId=ffb4ede9-0ecf-40cb-9800-983656ccfa79";
-const outputFile = "con_gt_06_18.txt";
+const url = "https://gametime.co/concert/disturbed-with-daughtry-tickets/5-15-2025-phoenix-az-phx-arena/events/67080f64438ba5e9a8cf8655?queryId=0a82cf2ad908aee6b1770597be733a33&resultPosition=1&searchIndex=performers&searchSessionId=cb36a63c-6448-430b-b70c-b84e3e89ec0d";
+const outputFile = "con_gt_05_15.txt";
 const collectedTickets = new Set();
 const source = "Gametime";
 const baseUrl = "https://gametime.co";
-const date = "06-18-2025";
-const homeTeam = "PHX Arena";
-const awayTeam = "Wu Tang Clan";
-
+const date = "05-15-2025";
+const homeTeam = "Phx Arena";
+const awayTeam = "Disturbed";
+ 
 // Database file and connection
 const dbFile = "tickets.db";
 const db = new sqlite3.Database(dbFile);
