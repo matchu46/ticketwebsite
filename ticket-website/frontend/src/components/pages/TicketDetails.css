@@ -150,7 +150,7 @@
 .left-column {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
   position: sticky;
   top: 10px; /* Keeps it stuck to the top while scrolling */
   height: 89vh; /* Keeps it from taking up too much space */
@@ -161,7 +161,7 @@
 
 /* Right Column: Scrollable tickets */
 .right-column {
-  width: 50%;
+  width: 40%;
   max-height: 89vh; /* Prevents overflowing the viewport */
   overflow-y: auto; /* Allows scrolling */
   padding: 10px;
