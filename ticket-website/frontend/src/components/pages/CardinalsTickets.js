@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import ReactSlider from 'react-slider';
 import { useParams } from 'react-router-dom';
 import './TicketDetails.css';
 import SeatingChart from './SeatingChart';
@@ -7,18 +8,67 @@ import { Button } from '../Button';
 export default function CardinalsTickets() {
     const { date } = useParams();
     const [tickets, setTickets] = useState([]);
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(10000);
+    const [priceRange, setPriceRange] = useState([0, 1000]);
     const [sortColumns, setSortColumns] = useState([]); // No sorting initially
     const [selectedSource, setSelectedSource] = useState("all");
     const [selectedSection, setSelectedSection] = useState(null);
 
+    // Calculate min and max prices dynamically when tickets are loaded
+    const [minPossiblePrice, setMinPossiblePrice] = useState(0);
+    const [maxPossiblePrice, setMaxPossiblePrice] = useState(1000);
+            
+    // State to track if price filter dropdown is open
+    const [isPriceFilterOpen, setIsPriceFilterOpen] = useState(false);
+            
+    // Reference to the price button to position the dropdown
+    const priceButtonRef = useRef(null);
+
     useEffect(() => {
+        console.log("Fetching tickets for date:", date);
+            
         fetch('http://localhost:5000/ticketsfb')
-            .then(response => response.json())
-            .then(data => setTickets(data.filter(ticket => ticket.date === date)))
-            .catch(error => console.error('Error fetching ticket data:', error));
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const filteredTickets = data.filter(ticket => ticket.date === date);
+            setTickets(filteredTickets);
+        
+            if (filteredTickets.length > 0) {
+                // Get the actual min and max prices from ticket data
+                const prices = filteredTickets.map(ticket => ticket.price);
+                const dynamicMinPrice = Math.floor(Math.min(...prices));
+                const dynamicMaxPrice = Math.ceil(Math.max(...prices));
+        
+                setMinPossiblePrice(dynamicMinPrice);
+                setMaxPossiblePrice(dynamicMaxPrice);
+                        
+                // Set initial price range to full ticket price range
+                setPriceRange([dynamicMinPrice, dynamicMaxPrice]);
+            }
+        })
+        .catch((error) => console.error('Error fetching ticket data:', error));
     }, [date]);
+            
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (isPriceFilterOpen && 
+                priceButtonRef.current && 
+                !priceButtonRef.current.contains(event.target) && 
+                !event.target.closest('.price-filter-dropdown')) {
+                setIsPriceFilterOpen(false);
+            }
+        }
+            
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isPriceFilterOpen]);
 
     const handleSort = (column) => {
         setSortColumns((prevSortColumns) => {
@@ -40,7 +90,7 @@ export default function CardinalsTickets() {
     };
 
     const filteredTickets = tickets
-        .filter(ticket => ticket.estimated_price >= minPrice && ticket.estimated_price <= maxPrice)
+        .filter(ticket => ticket.estimated_price >= priceRange[0] && ticket.estimated_price <= priceRange[1])
         .filter(ticket => selectedSource === "all" || ticket.source === selectedSource)
         .filter(ticket => !selectedSection || ticket.section === selectedSection);
 
@@ -66,6 +116,35 @@ export default function CardinalsTickets() {
         return sortObj ? (sortObj.order === "asc" ? "▲" : "▼") : "";
     }; 
     
+    const handleClearFilters = () => {
+        // Reset price range to min and max possible prices
+        setPriceRange([minPossiblePrice, maxPossiblePrice]);
+        setSelectedSource("all"); // Reset ticket source dropdown
+        setSortColumns([]); // Clear sorting options
+        setSelectedSection(null); // Clear selected section in seating chart
+    };
+
+    // Handle manual input for min price
+    const handleMinPriceInput = (e) => {
+        const newMinPrice = parseInt(e.target.value) || minPossiblePrice;
+        if (newMinPrice <= priceRange[1]) {
+            setPriceRange([newMinPrice, priceRange[1]]);
+        }
+    };
+    
+    // Handle manual input for max price
+    const handleMaxPriceInput = (e) => {
+        const newMaxPrice = parseInt(e.target.value) || maxPossiblePrice;
+        if (newMaxPrice >= priceRange[0]) {
+            setPriceRange([priceRange[0], newMaxPrice]);
+        }
+    };
+
+    // Toggle price filter dropdown
+    const togglePriceFilter = () => {
+        setIsPriceFilterOpen(!isPriceFilterOpen);
+    };
+
     return (
         <div className="page-container">
             <div className="main-content">
@@ -82,35 +161,92 @@ export default function CardinalsTickets() {
                         </Button>
                     </div>
                     <div className="ticket-info">
-                        <h1 className="tickets-title">
-                            {tickets.length > 0 ? `${tickets[0].home_team} vs ${tickets[0].away_team}` : "Loading..."}
+                        <h1 className="cardinals-tickets-title">
+                        {tickets.length > 0 ? `${tickets[0].home_team} vs ${tickets[0].away_team}` : "Loading..."}
                         </h1>
                         <p className="game-details">
                             {tickets.length > 0 ? `${tickets[0].date} - State Farm Stadium` : ""}
                         </p>
                     </div>
     
-                    {/* Filters */}
-                    <div className="controls-container">
-                        <div className="price-range">
-                            <label>Min Price:
-                                <input type="number" value={minPrice} onChange={(e) => setMinPrice(Number(e.target.value))} />
-                            </label>
-                            <label>Max Price:
-                                <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} />
-                            </label>
+                    {/* Filter buttons row - with relative positioning */}
+                    <div className="filter-buttons-row">
+                        <div className="price-filter-button-container" ref={priceButtonRef}>
+                            <Button 
+                                className='btns' 
+                                buttonStyle='btn--outline'
+                                buttonSize='btn--medium'
+                                onClick={togglePriceFilter}
+                            >
+                                ${priceRange[0]} - ${priceRange[1]} {isPriceFilterOpen ? '▲' : '▼'}
+                            </Button>
+                            
+                            {/* Price Range Filter Dropdown - with absolute positioning */}
+                            {isPriceFilterOpen && (
+                                <div className="price-filter-dropdown">
+                                    <div className="price-filter-container">
+                                        <h3>Price Range Filter</h3>
+                                        <div className="price-slider-container">
+                                            <ReactSlider
+                                                className="price-slider"
+                                                thumbClassName="price-slider-thumb"
+                                                trackClassName="price-slider-track"
+                                                value={priceRange}
+                                                onChange={setPriceRange}
+                                                min={minPossiblePrice}
+                                                max={maxPossiblePrice}
+                                                ariaLabel={['Lower price', 'Upper price']}
+                                                ariaValuetext={state => `$${state.valueNow}`}
+                                                pearling
+                                                minDistance={10}
+                                            />
+                                            <div className="price-range-display">
+                                                <div className="price-input-group">
+                                                    <label htmlFor="min-price-input">Min:</label>
+                                                    <input
+                                                        id="min-price-input"
+                                                        type="number"
+                                                        value={priceRange[0]}
+                                                        onChange={handleMinPriceInput}
+                                                        min={minPossiblePrice}
+                                                        max={priceRange[1]}
+                                                    />
+                                                </div>
+                                                <div className="price-input-group">
+                                                    <label htmlFor="max-price-input">Max:</label>
+                                                    <input
+                                                        id="max-price-input"
+                                                        type="number"
+                                                        value={priceRange[1]}
+                                                        onChange={handleMaxPriceInput}
+                                                        min={priceRange[0]}
+                                                        max={maxPossiblePrice}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
+                        
                         <div className="source-filter">
-                            <label>Ticket Source:
-                                <select value={selectedSource} onChange={(e) => setSelectedSource(e.target.value)}>
-                                    <option value="all">All Sources</option>
-                                    <option value="Gametime">Gametime</option>
-                                    <option value="StubHub">StubHub</option>
-                                    <option value="TickPick">TickPick</option>
-                                    <option value="Vivid Seats">Vivid Seats</option>
-                                </select>
-                            </label>
+                            <select value={selectedSource} onChange={(e) => setSelectedSource(e.target.value)}>
+                                <option value="all">All Sources</option>
+                                <option value="Gametime">Gametime</option>
+                                <option value="StubHub">StubHub</option>
+                                <option value="TickPick">TickPick</option>
+                            </select>
                         </div>
+                        
+                        <Button
+                            onClick={handleClearFilters}
+                            className='btns'
+                            buttonStyle='btn--outline'
+                            buttonSize='btn--medium'
+                        >
+                            Clear Filters
+                        </Button>
                     </div>
     
                     {/* Seating Chart */}
