@@ -41,3 +41,21 @@
     color: #333;
     margin: 20px auto;
   }
+
+  .game-info {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers everything horizontally */
+    gap: 15px; /* Adds spacing between logos and text */
+  }
+  
+  .concert-logo {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    object-fit: contain;
+  }
+  
+  .game-text {
+    text-align: center;
+    font-size: 1.1rem;
+  }

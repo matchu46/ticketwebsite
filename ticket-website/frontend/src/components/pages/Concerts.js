@@ -47,15 +47,38 @@ export default function Concerts() {
             <div className="game-boxes">
                 {Object.keys(groupedTickets).sort((a, b) => new Date(a) - new Date(b)).map(date => {
                     const game = groupedTickets[date][0];
+
+                    // Helper function to format team names for image files (convert spaces to underscores and lowercase)
+                    const formatTeamName = (team) => {
+                        return team.toLowerCase().replace(/\s+/g, '_');
+                    };
+
                     return (
                         <div
                             key={date}
                             className="game-box"
                             onClick={() => handleGameBoxClick(date)}
                         >
-                            <h3>{date}</h3>
-                            <p>{game.away_team} at {game.home_team}</p>
-                            <p>{groupedTickets[date].length} Tickets Available</p>
+                            {/* Game Info Section with Team Logos */}
+                            <div className="game-info">
+                                <img 
+                                    src={`/images/concert-logos/${formatTeamName(game.away_team)}.png`} 
+                                    alt={`${game.away_team} Logo`} 
+                                    className="team-logo"
+                                />
+                                
+                                <div className="game-text">
+                                    <h3>{date}</h3>
+                                    <p>{game.away_team} at {game.home_team}</p>
+                                    <p>{groupedTickets[date].length} Tickets Available</p>
+                                </div>
+    
+                                <img 
+                                    src={`/images/concert-logos/${formatTeamName(game.away_team)}.png`} 
+                                    alt={`${game.away_team} Logo`} 
+                                    className="team-logo"
+                                />
+                            </div>
                         </div>
                     );
                 })}

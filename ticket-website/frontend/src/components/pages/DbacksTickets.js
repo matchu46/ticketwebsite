@@ -288,8 +288,6 @@ export default function DbacksTickets() {
                 </div>
             </div>
         </div>
-    );
-    
-    
+    ); 
 }
 

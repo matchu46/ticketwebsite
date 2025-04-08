@@ -175,7 +175,7 @@ export default function ConcertsTickets() {
                         </Button>
                     </div>
                     <div className="ticket-info">
-                        <h1 className="tickets-title">
+                        <h1 className="concerts-tickets-title">
                             {tickets.length > 0 ? `${tickets[0].away_team}` : "Loading..."}
                         </h1>
                         <p className="game-details">
