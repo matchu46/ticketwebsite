@@ -2,14 +2,14 @@ const puppeteer = require('puppeteer');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
-const url = "https://gametime.co/nba-basketball/warriors-at-suns-tickets/4-8-2025-phoenix-az-footprint-center/events/66be5ef0d2310128074c5017";
-const outputFile = "sun_gt_04_11.txt";
+const url = "https://gametime.co/nba-basketball/thunder-at-suns-tickets/4-9-2025-phoenix-az-phx-arena/events/66be5ef27b254ce9631be3a6";
+const outputFile = "sun_gt_04_09.txt";
 const collectedTickets = new Set();
 const source = "Gametime";
 const baseUrl = "https://gametime.co";
-const date = "04-11-2025";
+const date = "04-09-2025";
 const homeTeam = "Suns";
-const awayTeam = "Spurs";
+const awayTeam = "Thunder";
 
 // Database file and connection
 const dbFile = "tickets.db";

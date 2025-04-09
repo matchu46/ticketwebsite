@@ -4,11 +4,11 @@ const sqlite3 = require('sqlite3').verbose(); // For SQLite DB
 const fs = require('fs');                // For file operations
 
 // Configuration constants
-const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-4-11-2025/event/155084721/?quantity=2";
-const outputFile = "sun_sh_04_11.txt";
-const gameDate = "04-11-2025";
+const url = "https://www.stubhub.com/phoenix-suns-phoenix-tickets-4-9-2025/event/154770106/?quantity=2";
+const outputFile = "sun_sh_04_09.txt";
+const gameDate = "04-09-2025";
 const homeTeam = "Suns";
-const awayTeam = "Spurs";
+const awayTeam = "Thunder";
 const source = "StubHub"; // Assuming this is the source
 
 // Initialize the database and create the `tickets` table if it doesn't exist
@@ -81,17 +81,17 @@ const checkDatabase = () => {
                 if (!listingId) continue;
 
                 const ticketUrl = `${url}&listingId=${listingId}`;
-                const section = await ticketElement.$eval('.sc-1t1b4cp-0.sc-1t1b4cp-6.eMtQWq.dQzlcE', el => {
+                const section = await ticketElement.$eval('.sc-fd01ffb-0.sc-fd01ffb-6.jBMRtu.ifPVso', el => {
                     const sectionText = el.innerText.trim();
                     const sectionMatch = sectionText.match(/Section\s*(\d+)/);
                     return sectionMatch ? sectionMatch[1] : null;
                 });
-                const row = await ticketElement.$eval('.sc-1t1b4cp-25.eYtDdR', el => {
+                const row = await ticketElement.$eval('.sc-fd01ffb-24.NKtZA', el => {
                     const rowText = el.innerText.trim();
                     const rowMatch = rowText.match(/Row\s*(\d+)/);
                     return rowMatch ? rowMatch[1] : null;
                 });
-                const priceText = await ticketElement.$eval('.sc-1t1b4cp-0.sc-1t1b4cp-1.eMtQWq.jJnid', el => el.innerText.trim());
+                const priceText = await ticketElement.$eval('.sc-fd01ffb-0.sc-fd01ffb-1.jBMRtu.ksrMNx', el => el.innerText.trim());
                 let price = parseFloat(priceText.replace(/[^\d.]/g, ''));
 
                 let estimatedPrice = 0;
