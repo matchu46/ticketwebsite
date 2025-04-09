@@ -267,6 +267,7 @@ export default function TicketDetails() {
                                     <th onClick={() => handleSort("row")}>Row {getSortIndicator("row")}</th>
                                     <th onClick={() => handleSort("estimated_price")}>Est. Price {getSortIndicator("estimated_price")}</th>
                                     <th onClick={() => handleSort("source")}>Source {getSortIndicator("source")}</th>
+                                    <th onClick={() => handleSort("Ticket Score")}>Score {getSortIndicator("Ticket Score")}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -280,6 +281,7 @@ export default function TicketDetails() {
                                                 {ticket.source}
                                             </a>
                                         </td>
+                                        <td>{ticket["Ticket Score"]}</td>
                                     </tr>
                                 ))}
                             </tbody>
