@@ -188,6 +188,20 @@
   text-align: left;
 }
 
+.filter-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px;
+  margin-bottom: 15px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.filter-buttons-row .btns {
+  margin: 0;
+}
+
 
 /* Responsive: Stack everything on small screens */
 @media (max-width: 900px) {
@@ -212,5 +226,11 @@
   .page-container {
       overflow: hidden;
       height: 100%;
+  }
+}
+
+@media (max-width: 820px) {
+  .filter-buttons-row {
+    gap: 10px;
   }
 }
