@@ -1,4 +1,4 @@
-// Required dependencies
+// Required dependencies 
 const puppeteer = require('puppeteer');  // For automating browser interaction (web scraping)
 const sqlite3 = require('sqlite3').verbose(); // SQLite database driver
 const fs = require('fs');                // File system access to save tickets to a .txt file
