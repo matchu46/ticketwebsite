@@ -22,7 +22,8 @@ export default function Dbacks() {
 
             const futureGames = data.filter(ticket => {
                 const gameDate = new Date(ticket.date);
-                return gameDate >= today;
+                //return gameDate >= today;
+                return gameDate;
             })
             const grouped = futureGames.reduce((acc, ticket) => {
                 acc[ticket.date] = acc[ticket.date] || [];
